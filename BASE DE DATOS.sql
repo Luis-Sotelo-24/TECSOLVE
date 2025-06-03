@@ -1,5 +1,5 @@
 use tecsolve;
-
+-- Nos falta tabla trabajador xd digo rol trabajador
 create table categorias(
 	idCategoria int auto_increment,
     nombreCategoria varchar(100),
