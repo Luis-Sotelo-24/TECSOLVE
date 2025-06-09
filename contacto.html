@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - TechSolvers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       ESTILOS GLOBALES Y RESET
+    ======================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f6f6f6;
+      color: #333;
+    }
+
+    /* Clase para ocultar visualmente el label pero mantenerlo accesible */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* ========================================
+       ESTILOS DEL HEADER
+       (NO MODIFICAR - USADO EN TODAS LAS PÁGINAS)
+    ======================================== */
+    
+    /* HEADER SUPERIOR - Logo, Búsqueda, Login/Carrito */
+    .header-superior {
+      background-color: #f6f6f6;
+      color: #333;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      color: #333;
+      flex: 1;
+    }
+
+    .logo img {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    /* BARRA DE BÚSQUEDA */
+    .search-container {
+      flex: 1;
+      max-width: 600px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 12px 15px 12px 45px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: white;
+      color: #333;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-box:focus {
+      border-color: #1C61E7;
+      box-shadow: 0 0 0 3px rgba(28, 97, 231, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .search-box::placeholder {
+      color: #999;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: #666;
+    }
+
+    /* LOGIN Y CARRITO */
+    .user-actions {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex: 1;
+    }
+
+    .user-actions a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .user-actions a:hover {
+      text-decoration: underline;
+      color: #666;
+    }
+
+    /* NAVEGACIÓN SECUNDARIA - Menú de páginas */
+    .navegacion-secundaria {
+      background-color: #E6EFFD;
+      padding: 12px 30px;
+      margin-top: 3px;
+      border-radius: 8px;
+      margin-left: 30px;
+      margin-right: 30px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Estados del menú de navegación */
+    .nav-menu li a:hover {
+      background-color: rgba(28, 97, 231, 0.2); /* Fondo azul suave al pasar mouse */
+      color: #000; /* Texto negro en hover */
+    }
+
+    .nav-menu li a.active {
+      background-color: #1C61E7; /* Fondo azul sólido para página activa */
+      color: white; /* Texto blanco para página activa */
+      font-weight: 500;
+    }
+
+    /* ========================================
+       ESTILOS DEL BODY/MAIN
+       (AQUÍ PUEDES MODIFICAR PARA CADA PÁGINA)
+    ======================================== */
+    
+    /* Contenedor principal del contenido */
+    main {
+      padding: 40px 20px;
+    }
+
+    /* ESTILOS ESPECÍFICOS DE LA PÁGINA DE CONTACTO */
+    
+    /* Fila principal que contiene imagen y ubicación+horario */
+    .fila-contacto {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* Columna izquierda: Tienda Física */
+    .tienda-fisica {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .tienda-fisica h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .imagen-vertical {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    /* Columna derecha: Ubicación y horarios uno debajo del otro */
+    .ubicacion-y-horarios {
+      flex: 1;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .mapa, .horarios {
+      width: 100%;
+    }
+
+    .mapa h3, .horarios h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .mapa iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .horarios {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .horario p {
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+      text-align: left;
+    }
+
+    /* ========================================
+       ESTILOS DEL FOOTER
+       (NO MODIFICAR - USADO EN TODAS LAS PÁGINAS)
+    ======================================== */
+    
+    footer {
+      background-color: #000;
+      color: white;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer-col h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-footer {
+      width: 120px;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    .icono-whatsapp {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .footer-copy {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      padding-top: 10px;
+    }
+
+    /* ========================================
+       ESTILOS RESPONSIVOS
+       (AFECTAN A HEADER, BODY Y FOOTER)
+    ======================================== */
+    
+    /* RESPONSIVE PARA TABLETS */
+    @media (max-width: 768px) {
+      /* HEADER RESPONSIVE */
+      .header-superior {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        justify-content: center;
+      }
+
+      .logo {
+        order: 0;
+        justify-content: center;
+      }
+
+      .search-container {
+        order: 1;
+        max-width: 100%;
+        justify-content: center;
+      }
+
+      .user-actions {
+        order: 2;
+        gap: 15px;
+        justify-content: center;
+      }
+
+      .navegacion-secundaria {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding: 10px 15px;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .nav-menu li a {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
+      /* BODY RESPONSIVE - PÁGINA DE CONTACTO */
+      main {
+        padding: 20px 15px;
+      }
+
+      .fila-contacto {
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .tienda-fisica {
+        max-width: 100%;
+      }
+
+      .imagen-vertical {
+        height: 300px;
+      }
+
+      .ubicacion-y-horarios {
+        max-width: 100%;
+      }
+
+      .mapa iframe {
+        height: 300px;
+      }
+
+      /* FOOTER RESPONSIVE */
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-col {
+        margin: 15px 0;
+        min-width: 100%;
+      }
+
+      .footer-col ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-footer {
+        width: 100px;
+      }
+    }
+
+    /* RESPONSIVE PARA MÓVILES */
+    @media (max-width: 480px) {
+      /* HEADER RESPONSIVE MÓVIL */
+      .header-superior {
+        padding: 10px;
+        gap: 12px;
+      }
+
+      .logo {
+        justify-content: center;
+      }
+
+      .logo img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .search-container {
+        justify-content: center;
+      }
+
+      .search-box {
+        font-size: 14px;
+        padding: 10px 12px 10px 40px;
+      }
+
+      .user-actions {
+        justify-content: center;
+      }
+
+      .user-actions a {
+        font-size: 14px;
+      }
+
+      .navegacion-secundaria {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 8px 10px;
+      }
+
+      .nav-menu {
+        gap: 8px;
+      }
+
+      .nav-menu li a {
+        font-size: 12px;
+        padding: 5px 6px;
+      }
+
+      /* BODY RESPONSIVE MÓVIL - PÁGINA DE CONTACTO */
+      .tienda-fisica h2 {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      .mapa h3, .horarios h3 {
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      .horarios {
+        padding: 15px;
+      }
+
+      .horario p {
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      /* FOOTER RESPONSIVE MÓVIL */
+      .footer-col h4 {
+        font-size: 16px;
+      }
+
+      .footer-copy {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================
+       HEADER - REUTILIZABLE EN TODAS LAS PÁGINAS
+       (COPIAR ESTE BLOQUE EN TODAS LAS PÁGINAS)
+  ======================================== -->
+  <header class="header-superior">
+    <div class="logo">
+      <img src="imagenes/logotechsolvers.jpg" alt="TechSolvers Logo">
+    </div>
+    
+    <div class="search-container">
+      <label for="search" class="sr-only">Buscar productos</label>
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" class="search-box" placeholder="Buscar productos...">
+    </div>
+    
+    <div class="user-actions">
+      <a href="login.html">Login</a>
+      <a href="carrito.html">Carrito</a>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN SECUNDARIA - CAMBIAR 'active' SEGÚN LA PÁGINA -->
+  <nav class="navegacion-secundaria">
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="categorias.html">Categorías</a></li>
+      <li><a href="servicio-tecnico.html">Servicio Técnico</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========================================
+       BODY/MAIN - AQUÍ MODIFICAS EL CONTENIDO DE CADA PÁGINA
+       (SOLO CAMBIA EL CONTENIDO DENTRO DE <main>)
+  ======================================== -->
+  <main>
+    <!-- CONTENIDO ESPECÍFICO DE LA PÁGINA DE CONTACTO -->
+    <section class="fila-contacto">
+
+      <!-- Izquierda: Tienda Física -->
+      <div class="tienda-fisica">
+        <h2>Tienda Física</h2>
+        <img src="imagenes/imagencomprador.jpg" alt="Tienda Física" class="imagen-vertical" />
+      </div>
+
+      <!-- Derecha: Ubicación y horarios -->
+      <div class="ubicacion-y-horarios">
+
+        <!-- Mapa -->
+        <div class="mapa">
+          <h3>Ubicación</h3>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8032.782633660827!2d-77.04489146788436!3d-12.039941454971778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c99dc7c26d85%3A0x84aaa88abddae7ef!2sTECHSOLVERS-Audio%20y%20Tecnologia!5e0!3m2!1ses-419!2spe!4v1746912234941!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <!-- Horarios -->
+        <div class="horarios">
+          <h3>Horario de Atención</h3>
+          <div class="horario">
+            <p>Lunes: 10:00 am - 7:00 pm</p>
+            <p>Martes: 10:00 am - 7:00 pm</p>
+            <p>Miércoles: 10:00 am - 7:00 pm</p>
+            <p>Jueves: 10:00 am - 7:00 pm</p>
+            <p>Viernes: 10:00 am - 7:00 pm</p>
+            <p>Sábado: 10:00 am - 7:00 pm</p>
+            <p>Domingo: 10:00 am - 7:00 pm</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================
+       FOOTER - REUTILIZABLE EN TODAS LAS PÁGINAS
+       (COPIAR ESTE BLOQUE EN TODAS LAS PÁGINAS)
+  ======================================== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="imagenes/logotechsolvers.jpg" alt="Logo TechSolvers" class="logo-footer">
+      </div>
+      <div class="footer-col">
+        <h4>Envíos y garantías</h4>
+        <ul>
+          <li>¿Cómo comprar?</li>
+          <li>Envíos</li>
+          <li>Términos y condiciones de Garantía</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>¿Quiénes somos?</h4>
+        <ul>
+          <li>Nuestra tienda</li>
+          <li>Privacidad</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">Asesor de ventas</li>
+          <li><img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">Área de garantía</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; TechSolvers 2025
+    </div>
+  </footer>
+
+</body>
+</html>
