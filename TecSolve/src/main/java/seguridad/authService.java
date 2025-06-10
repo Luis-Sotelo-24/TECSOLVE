@@ -19,5 +19,4 @@ public class authService {
     public static boolean verificar(String claveIngresada, String hashGuardado) {
         return BCrypt.checkpw(claveIngresada, hashGuardado);
     }
-    
 }

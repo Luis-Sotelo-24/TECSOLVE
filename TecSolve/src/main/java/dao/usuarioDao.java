@@ -121,8 +121,6 @@ public class usuarioDao {
             ps.setString(4, u.getTelefono());
             ps.setString(5, u.getDni());
             ps.setString(6, u.getCorreo());
-            System.out.println("Contraseña original: " + u.getClave());
-            System.out.println("Hash guardado: " + authService.encriptar(u.getClave()));
             ps.setString(7, authService.encriptar(u.getClave()));
             ps.setString(8, u.getRol());
             ps.executeUpdate();
