@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a th:href="@{/nuevo}">Nuevo</a>
+        <table>
+            <thead>
+                <tr>
+                    <td>Código</td>
+                    <td>Categoria</td>
+                    <td>Nombre</td>
+                    <td>Descripcion</td>
+                    <td>Precio</td>
+                    <td>Stock</td>   
+                    <td>Acciones</td>  
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="c : ${listaProducto}">
+                    <td th:text="${c.idProducto}"></td>
+                    <td th:text="${c.categoria}"></td>
+                    <td th:text="${c.nombreProducto}"></td>
+                    <td th:text="${c.descripcion}"></td>
+                    <td th:text="${c.precio}"></td>
+                    <td th:text="${c.stock}"></td>
+                    <td>
+                        <a th:href="@{/editar}+${c.idProducto}">Editar</a>
+                        <a th:href="@{/eliminar}+${c.idProducto}">Eliminar</a>
+                    </td>
+                    
+                </tr>
+            </tbody>
+
+        </table>
+    </body>
+</html>
