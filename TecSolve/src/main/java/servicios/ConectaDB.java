@@ -15,7 +15,7 @@ public class ConectaDB {
         String url = "jdbc:mysql://localhost:3306/tecsolve?useUnicode=true&characterEncoding=UTF-8&serverTimezone=America/Lima";
 
         String user = "root";
-        String clave = "12345678";
+        String clave = "Orla59654268-do";
 
         String Driver = "com.mysql.cj.jdbc.Driver";
 

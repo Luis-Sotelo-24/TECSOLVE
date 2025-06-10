@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Guillermo
  */
 @WebServlet(name = "controladorAdmin", urlPatterns = {"/controladorAdmin"})
-public class controladorAdmin extends HttpServlet {
+public class AdminServlet extends HttpServlet {
 
     productoDao dao = new productoDao();
 

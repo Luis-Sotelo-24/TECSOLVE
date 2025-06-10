@@ -13,16 +13,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import seguridad.authService;
 
 /**
  *
  * @author Guillermo
  */
-@WebServlet(name = "controladorLogin", urlPatterns = {"/controladorLogin"})
-public class controladorLogin extends HttpServlet {
+@WebServlet(name = "controladorUsuario", urlPatterns = {"/controladorUsuario"})
+public class UsuarioServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -56,37 +63,29 @@ public class controladorLogin extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-        String email = request.getParameter("correo");
-        email=email.toLowerCase();
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String direccion = request.getParameter("direccion");
+        String telefono = request.getParameter("telefono");
+        String dni = request.getParameter("dni");
+        String correo = request.getParameter("correo").toLowerCase();
         String clave = request.getParameter("clave");
+        String rol = ("tecsolve".equals(request.getParameter("rol")) ? "admin" : "cliente");
 
         usuarioDao dao = new usuarioDao();
-        usuario usuario = dao.buscarEmail(email);
-        if (usuario != null && authService.verificar(clave, usuario.getClave())) {
-            // Guardar datos en sesión
-            HttpSession session = request.getSession();
-            session.setAttribute("usuario", usuario);
 
-            if (null == usuario.getRol()) {
-                response.sendRedirect("login.jsp?error=Rol desconocido");
-            } else // Redirección según rol
-            {
-                switch (usuario.getRol()) {
-                    case "admin":
-                        response.sendRedirect("./vistas/dashboard.jsp");
-                        break;
-                    case "cliente":
-                        response.sendRedirect("./vistas/index.jsp");
-                        break;
-                    default:
-                        response.sendRedirect("login.jsp?error=Rol desconocido");
-                        break;
-                }
-            }
-        } else {
-            request.setAttribute("error", "Credenciales inválidas");
-            request.getRequestDispatcher("./vistas/login.jsp").forward(request, response);
-        }
+        usuario nuevo = new usuario();
+        nuevo.setNombre(nombre);
+        nuevo.setApellido(apellido);
+        nuevo.setDireccion(direccion);
+        nuevo.setTelefono(telefono);
+        nuevo.setDni(dni);
+        nuevo.setCorreo(correo);
+        nuevo.setClave(clave);
+        nuevo.setRol(rol);
+        dao.agregarUsuario(nuevo);
+
+        response.sendRedirect("./vistas/login.jsp");
     }
 
     /**

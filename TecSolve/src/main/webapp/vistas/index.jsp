@@ -179,6 +179,9 @@
       <img src="${pageContext.request.contextPath}/imagenes/tarjetagrafica.jpg" alt="Producto 1" />
       <h3>Tarjeta grafica</h3>
       <p>S/400.00</p>
+      <img src="${pageContext.request.contextPath}/imagenes/tarjetagrafica.jpg" alt="Mouse Gamer" />
+      <h3>Laptop Lenovo</h3>
+      <p>S/ 2200.00</p>
       <button>Agregar al carrito</button>
     </div>
     <div class="producto">
