@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechSolvers - Tienda de Tecnología en Lima</title>
+  <meta name="description"
+    content="TechSolvers - Tu tienda de confianza en tecnología. Computadoras, celulares, audio, impresoras y servicios técnicos en Lima, Perú.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS GLOBAL (para todas las páginas) -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- CSS ESPECÍFICO DE ESTA PÁGINA -->
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+
+  <!-- ========================================
+       HEADER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <header class="header-superior">
+    <div class="logo">
+      <img src="imagenes/logotechsolvers.jpg" alt="TechSolvers Logo">
+      TechSolvers
+    </div>
+
+    <div class="search-container">
+      <label for="search" class="sr-only">Buscar productos</label>
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" class="search-box" placeholder="Buscar productos...">
+    </div>
+
+    <div class="user-actions">
+      <a href="login.html">Login</a>
+      <a href="registro-nuevo.html">Registro</a>
+      <a href="carrito.html" id="carrito-link">🛒 Carrito</a>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN SECUNDARIA -->
+  <nav class="navegacion-secundaria">
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="categorias.html">Categorías</a></li>
+      <li><a href="servicio-tecnico.html">Servicio Técnico</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========================================
+       CONTENIDO ESPECÍFICO DE INICIO
+  ======================================== -->
+  <main>
+    <!-- ========================================
+         HERO SECTION / BANNER PRINCIPAL
+    ======================================== -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">TechSolvers</h1>
+        <p class="hero-subtitle">
+          Tu tienda de confianza en tecnología. Computadoras, celulares, audio, impresoras y servicios técnicos
+          especializados en Lima.
+        </p>
+        <div class="hero-cta">
+          <a href="productos.html" class="btn-primary">🛍️ Ver Productos</a>
+          <a href="servicio-tecnico.html" class="btn-secondary">🔧 Servicios Técnicos</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         CATEGORÍAS DESTACADAS
+    ======================================== -->
+    <section class="seccion" id="categorias">
+      <h2 class="seccion-titulo">🛍️ Nuestras Categorías</h2>
+      <p class="seccion-subtitulo">
+        Explora nuestra amplia gama de productos tecnológicos organizados por categorías
+      </p>
+
+      <div class="categorias-grid">
+        <!-- Las categorías se cargan dinámicamente desde el backend -->
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Cargando categorías...</p>
+        </div>
+      </div>
+
+      <div class="ver-mas-container">
+        <a href="categorias.html" class="btn-ver-mas">Ver Todas las Categorías</a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         PRODUCTOS DESTACADOS
+    ======================================== -->
+    <section class="seccion productos-destacados" id="productos">
+      <h2 class="seccion-titulo">⭐ Productos Destacados</h2>
+      <p class="seccion-subtitulo">
+        Los productos más populares y mejor valorados por nuestros clientes
+      </p>
+
+      <div class="productos-grid">
+        <!-- Los productos se cargan dinámicamente desde el backend -->
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Cargando productos destacados...</p>
+        </div>
+      </div>
+
+      <div class="ver-mas-container">
+        <a href="productos.html" class="btn-ver-mas">Ver Todos los Productos</a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         SERVICIOS TÉCNICOS
+    ======================================== -->
+    <section class="seccion" id="servicios">
+      <h2 class="seccion-titulo">🔧 Servicios Técnicos</h2>
+      <p class="seccion-subtitulo">
+        Ofrecemos servicios de reparación y mantenimiento especializados para todos tus dispositivos
+      </p>
+
+      <div class="servicios-grid">
+        <!-- Los servicios se cargan dinámicamente desde el backend -->
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Cargando servicios...</p>
+        </div>
+      </div>
+
+      <div class="ver-mas-container">
+        <a href="servicio-tecnico.html" class="btn-ver-mas">Ver Todos los Servicios</a>
+      </div>
+    </section>
+
+    <!-- ========================================
+         INFORMACIÓN ADICIONAL
+    ======================================== -->
+    <section class="seccion" style="background-color: #f8f9fa;">
+      <div
+        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center;">
+
+        <div style="padding: 30px 20px;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">🚚</div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto);">Envío Gratuito</h3>
+          <p style="color: var(--color-gris);">En compras mayores a S/ 150 dentro de Lima Metropolitana</p>
+        </div>
+
+        <div style="padding: 30px 20px;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">🛡️</div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto);">Garantía Extendida</h3>
+          <p style="color: var(--color-gris);">Hasta 2 años de garantía en productos seleccionados</p>
+        </div>
+
+        <div style="padding: 30px 20px;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">🔧</div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto);">Soporte Técnico</h3>
+          <p style="color: var(--color-gris);">Equipo especializado para resolver tus problemas técnicos</p>
+        </div>
+
+        <div style="padding: 30px 20px;">
+          <div style="font-size: 2.5rem; margin-bottom: 15px;">💳</div>
+          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--color-texto);">Múltiples Pagos</h3>
+          <p style="color: var(--color-gris);">Tarjetas, Yape, transferencias bancarias y más opciones</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================
+       FOOTER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="imagenes/logotechsolvers.jpg" alt="Logo TechSolvers" class="logo-footer">
+        <p style="margin-top: 15px; color: #ccc; font-size: 14px;">
+          Tu tienda de confianza en tecnología desde 2020. Calidad, servicio y garantía en cada producto.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li onclick="window.location.href='productos.html?categoria=computadoras'">Computadoras</li>
+          <li onclick="window.location.href='productos.html?categoria=celulares'">Celulares</li>
+          <li onclick="window.location.href='productos.html?categoria=audio'">Audio</li>
+          <li onclick="window.location.href='productos.html?categoria=impresoras'">Impresoras</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li onclick="window.location.href='nosotros.html'">Nuestra Historia</li>
+          <li onclick="window.location.href='contacto.html'">Ubicación</li>
+          <li onclick="window.location.href='faq.html'">Preguntas Frecuentes</li>
+          <li onclick="window.location.href='#'">Términos y Condiciones</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Asesor de ventas
+          </li>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Soporte técnico
+          </li>
+          <li onclick="window.location.href='tel:+51123456789'">📞 +51 123 456 789</li>
+          <li onclick="window.location.href='mailto:info@techsolvers.pe'">📧 info@techsolvers.pe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; TechSolvers 2025 - Todos los derechos reservados | Desarrollado con ❤️ en Lima, Perú
+    </div>
+  </footer>
+
+  <!-- ========================================
+       JAVASCRIPT - PRIMERO GLOBAL, LUEGO ESPECÍFICO
+  ======================================== -->
+
+  <!-- JS GLOBAL (se carga en todas las páginas) -->
+  <script src="js/global.js"></script>
+
+  <!-- JS ESPECÍFICO DE ESTA PÁGINA -->
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>

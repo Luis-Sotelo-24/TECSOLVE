@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categorías - TechSolvers</title>
+  <meta name="description"
+    content="Explora todas las categorías de productos tecnológicos en TechSolvers. Computadoras, celulares, audio, impresoras y más.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS GLOBAL (para todas las páginas) -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- CSS ESPECÍFICO DE ESTA PÁGINA -->
+  <link rel="stylesheet" href="css/categorias.css">
+</head>
+
+<body>
+
+  <!-- ========================================
+       HEADER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <header class="header-superior">
+    <div class="logo">
+      <img src="imagenes/logotechsolvers.jpg" alt="TechSolvers Logo">
+      TechSolvers
+    </div>
+
+    <div class="search-container">
+      <label for="search" class="sr-only">Buscar productos</label>
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" class="search-box" placeholder="Buscar productos...">
+    </div>
+
+    <div class="user-actions">
+      <a href="login.html">Login</a>
+      <a href="registro-nuevo.html">Registro</a>
+      <a href="carrito.html" id="carrito-link">🛒 Carrito</a>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN SECUNDARIA -->
+  <nav class="navegacion-secundaria">
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="categorias.html" class="active">Categorías</a></li>
+      <li><a href="servicio-tecnico.html">Servicio Técnico</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========================================
+       CONTENIDO ESPECÍFICO DE CATEGORÍAS
+  ======================================== -->
+  <main>
+    <!-- ========================================
+         HERO SECTION CATEGORÍAS
+    ======================================== -->
+    <section class="categorias-hero">
+      <div class="hero-content">
+        <h1 class="hero-title">📦 Nuestras Categorías</h1>
+        <p class="hero-subtitle">
+          Encuentra exactamente lo que buscas navegando por nuestras categorías especializadas
+        </p>
+      </div>
+    </section>
+
+    <!-- ========================================
+         FILTROS Y ORDENAMIENTO
+    ======================================== -->
+    <section class="filtros-section">
+      <div class="filtros-container">
+        <div class="filtros-left">
+          <span class="total-categorias" id="total-categorias">
+            Mostrando <strong>0</strong> categorías
+          </span>
+        </div>
+        
+        <div class="filtros-right">
+          <div class="ordenar-container">
+            <label for="ordenar-categorias">Ordenar por:</label>
+            <select id="ordenar-categorias" class="ordenar-select">
+              <option value="nombre-asc">Nombre (A-Z)</option>
+              <option value="nombre-desc">Nombre (Z-A)</option>
+              <option value="productos-desc">Más productos</option>
+              <option value="productos-asc">Menos productos</option>
+              <option value="recientes">Más recientes</option>
+            </select>
+          </div>
+          
+          <div class="vista-container">
+            <button class="btn-vista active" data-vista="grid" title="Vista cuadrícula">
+              <span>⊞</span>
+            </button>
+            <button class="btn-vista" data-vista="lista" title="Vista lista">
+              <span>☰</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         GRID DE CATEGORÍAS
+    ======================================== -->
+    <section class="categorias-section">
+      <div class="categorias-container">
+        
+        <!-- BUSCADOR DE CATEGORÍAS -->
+        <div class="buscar-categoria-container">
+          <input 
+            type="text" 
+            id="buscar-categoria" 
+            class="buscar-categoria-input" 
+            placeholder="🔍 Buscar categoría..."
+          >
+        </div>
+
+        <!-- GRID DE CATEGORÍAS -->
+        <div class="categorias-grid" id="categorias-grid">
+          <!-- Las categorías se cargan dinámicamente -->
+          <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>Cargando categorías...</p>
+          </div>
+        </div>
+
+        <!-- MENSAJE CUANDO NO HAY CATEGORÍAS -->
+        <div class="no-categorias" id="no-categorias" style="display: none;">
+          <div class="no-categorias-icon">📦</div>
+          <h2>No se encontraron categorías</h2>
+          <p>Intenta ajustar tu búsqueda o filtros</p>
+          <button onclick="location.reload()" class="btn-primary">
+            Recargar página
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================
+         SECCIÓN DE INFORMACIÓN
+    ======================================== -->
+    <section class="info-section">
+      <div class="info-container">
+        <h2 class="info-title">¿Por qué comprar por categorías?</h2>
+        <div class="info-grid">
+          
+          <div class="info-card">
+            <div class="info-icon">🎯</div>
+            <h3>Búsqueda Precisa</h3>
+            <p>Encuentra exactamente lo que necesitas navegando por categorías específicas</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">⚡</div>
+            <h3>Ahorra Tiempo</h3>
+            <p>Accede rápidamente a los productos relacionados sin buscar entre todo el catálogo</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">🔍</div>
+            <h3>Descubre Más</h3>
+            <p>Explora productos similares y complementarios dentro de cada categoría</p>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">💡</div>
+            <h3>Mejor Decisión</h3>
+            <p>Compara fácilmente productos del mismo tipo para tomar la mejor decisión</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         CATEGORÍAS POPULARES (ESTADÍSTICAS)
+    ======================================== -->
+    <section class="stats-section">
+      <div class="stats-container">
+        <h2 class="stats-title">📊 Categorías más populares</h2>
+        <div class="stats-grid" id="categorias-populares">
+          <!-- Se carga dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================
+       FOOTER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="imagenes/logotechsolvers.jpg" alt="Logo TechSolvers" class="logo-footer">
+        <p style="margin-top: 15px; color: #ccc; font-size: 14px;">
+          Tu tienda de confianza en tecnología desde 2020. Calidad, servicio y garantía en cada producto.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li onclick="window.location.href='productos.html?categoria=computadoras'">Computadoras</li>
+          <li onclick="window.location.href='productos.html?categoria=celulares'">Celulares</li>
+          <li onclick="window.location.href='productos.html?categoria=audio'">Audio</li>
+          <li onclick="window.location.href='productos.html?categoria=impresoras'">Impresoras</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li onclick="window.location.href='nosotros.html'">Nuestra Historia</li>
+          <li onclick="window.location.href='contacto.html'">Ubicación</li>
+          <li onclick="window.location.href='faq.html'">Preguntas Frecuentes</li>
+          <li onclick="window.location.href='#'">Términos y Condiciones</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Asesor de ventas
+          </li>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Soporte técnico
+          </li>
+          <li onclick="window.location.href='tel:+51123456789'">📞 +51 123 456 789</li>
+          <li onclick="window.location.href='mailto:info@techsolvers.pe'">📧 info@techsolvers.pe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; TechSolvers 2025 - Todos los derechos reservados | Desarrollado con ❤️ en Lima, Perú
+    </div>
+  </footer>
+
+  <!-- ========================================
+       JAVASCRIPT - PRIMERO GLOBAL, LUEGO ESPECÍFICO
+  ======================================== -->
+
+  <!-- JS GLOBAL (se carga en todas las páginas) -->
+  <script src="js/global.js"></script>
+
+  <!-- JS ESPECÍFICO DE ESTA PÁGINA -->
+  <script src="js/categorias.js"></script>
+
+</body>
+
+</html>

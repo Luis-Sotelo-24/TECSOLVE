@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preguntas Frecuentes - TechSolvers | FAQ</title>
+  <meta name="description"
+    content="Resuelve todas tus dudas sobre TechSolvers. Preguntas frecuentes sobre compras, envíos, garantías, servicios técnicos y más.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS GLOBAL (para todas las páginas) -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- CSS ESPECÍFICO DE ESTA PÁGINA -->
+  <link rel="stylesheet" href="css/faq.css">
+</head>
+
+<body>
+
+  <!-- ========================================
+       HEADER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <header class="header-superior">
+    <div class="logo">
+      <img src="imagenes/logotechsolvers.jpg" alt="TechSolvers Logo">
+      TechSolvers
+    </div>
+
+    <div class="search-container">
+      <label for="search" class="sr-only">Buscar productos</label>
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" class="search-box" placeholder="Buscar productos...">
+    </div>
+
+    <div class="user-actions">
+      <a href="login.html">Login</a>
+      <a href="registro-nuevo.html">Registro</a>
+      <a href="carrito.html" id="carrito-link">🛒 Carrito</a>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN SECUNDARIA -->
+  <nav class="navegacion-secundaria">
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="categorias.html">Categorías</a></li>
+      <li><a href="servicio-tecnico.html">Servicio Técnico</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="faq.html" class="active">FAQ</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========================================
+       CONTENIDO ESPECÍFICO DE FAQ
+  ======================================== -->
+  <main>
+    <!-- ========================================
+         HERO SECTION FAQ
+    ======================================== -->
+    <section class="hero-faq">
+      <div class="hero-content">
+        <h1 class="hero-title">❓ Preguntas Frecuentes</h1>
+        <p class="hero-subtitle">
+          Encuentra respuestas rápidas a las dudas más comunes sobre TechSolvers. 
+          Si no encuentras lo que buscas, no dudes en contactarnos.
+        </p>
+        
+        <!-- BUSCADOR DE FAQ -->
+        <div class="search-faq-container">
+          <input type="text" id="search-faq" placeholder="Buscar en preguntas frecuentes..." 
+                 onkeyup="buscarPreguntas()">
+          <span class="search-faq-icon">🔍</span>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Preguntas respondidas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24h</span>
+            <span class="stat-label">Tiempo de respuesta</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">95%</span>
+            <span class="stat-label">Problemas resueltos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         NAVEGACIÓN RÁPIDA DE CATEGORÍAS
+    ======================================== -->
+    <section class="categorias-faq">
+      <div class="container">
+        <h2>🗂️ Buscar por categoría</h2>
+        <div class="categorias-grid">
+          <div class="categoria-btn active" onclick="filtrarPorCategoria('todas')" data-categoria="todas">
+            <span class="categoria-icono">📋</span>
+            <span class="categoria-titulo">Todas</span>
+            <span class="categoria-contador" id="contador-todas">50</span>
+          </div>
+
+          <div class="categoria-btn" onclick="filtrarPorCategoria('compras')" data-categoria="compras">
+            <span class="categoria-icono">🛒</span>
+            <span class="categoria-titulo">Compras</span>
+            <span class="categoria-contador" id="contador-compras">12</span>
+          </div>
+
+          <div class="categoria-btn" onclick="filtrarPorCategoria('envios')" data-categoria="envios">
+            <span class="categoria-icono">🚚</span>
+            <span class="categoria-titulo">Envíos</span>
+            <span class="categoria-contador" id="contador-envios">8</span>
+          </div>
+
+          <div class="categoria-btn" onclick="filtrarPorCategoria('garantias')" data-categoria="garantias">
+            <span class="categoria-icono">🛡️</span>
+            <span class="categoria-titulo">Garantías</span>
+            <span class="categoria-contador" id="contador-garantias">6</span>
+          </div>
+
+          <div class="categoria-btn" onclick="filtrarPorCategoria('servicios')" data-categoria="servicios">
+            <span class="categoria-icono">🔧</span>
+            <span class="categoria-titulo">Servicios</span>
+            <span class="categoria-contador" id="contador-servicios">10</span>
+          </div>
+
+          <div class="categoria-btn" onclick="filtrarPorCategoria('pagos')" data-categoria="pagos">
+            <span class="categoria-icono">💳</span>
+            <span class="categoria-titulo">Pagos</span>
+            <span class="categoria-contador" id="contador-pagos">7</span>
+          </div>
+
+          <div class="categoria-btn" onclick="filtrarPorCategoria('cuenta')" data-categoria="cuenta">
+            <span class="categoria-icono">👤</span>
+            <span class="categoria-titulo">Mi Cuenta</span>
+            <span class="categoria-contador" id="contador-cuenta">7</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         PREGUNTAS FRECUENTES - ACORDEÓN
+    ======================================== -->
+    <section class="faq-section">
+      <div class="container">
+        
+        <!-- NO HAY RESULTADOS -->
+        <div class="no-resultados" id="no-resultados" style="display: none;">
+          <div class="no-resultados-icono">❓</div>
+          <h3>No se encontraron preguntas</h3>
+          <p>Intenta con otros términos de búsqueda o contacta con nosotros directamente.</p>
+          <button class="btn-contacto" onclick="window.location.href='contacto.html'">
+            📧 Contactar Soporte
+          </button>
+        </div>
+
+        <!-- COMPRAS -->
+        <div class="faq-categoria" data-categoria="compras">
+          <h2 class="categoria-titulo">🛒 Compras y Productos</h2>
+          
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cómo puedo realizar una compra en TechSolvers?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Puedes comprar de tres maneras:</p>
+              <ul>
+                <li><strong>Online:</strong> Navega nuestro catálogo, agrega productos al carrito y completa tu pedido.</li>
+                <li><strong>Presencial:</strong> Visita nuestra tienda en Comas, Lima, y nuestro equipo te atenderá.</li>
+                <li><strong>WhatsApp:</strong> Contáctanos al +51 123 456 789 para hacer tu pedido.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Los productos son originales y nuevos?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Sí, todos nuestros productos son <strong>100% originales y nuevos</strong>. Trabajamos directamente con distribuidores autorizados y ofrecemos garantía completa en todos los artículos.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Puedo cancelar mi pedido después de realizarlo?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Sí, puedes cancelar tu pedido siempre que no haya sido enviado. Contáctanos inmediatamente y te ayudaremos con la cancelación y reembolso si ya pagaste.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cómo sé si un producto está disponible en stock?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>En la página de cada producto verás el estado del stock en tiempo real. Si muestra "En Stock" puedes comprarlo inmediatamente. Si está agotado, puedes registrarte para recibir notificación cuando vuelva a estar disponible.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Hacen descuentos por cantidad o clientes frecuentes?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>¡Sí! Ofrecemos descuentos especiales para:</p>
+              <ul>
+                <li>Compras al por mayor (3+ unidades del mismo producto)</li>
+                <li>Clientes frecuentes con historial de compras</li>
+                <li>Promociones estacionales y días especiales</li>
+                <li>Estudiantes y empresas (con acreditación)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENVÍOS -->
+        <div class="faq-categoria" data-categoria="envios">
+          <h2 class="categoria-titulo">🚚 Envíos y Entregas</h2>
+          
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cuánto cuesta el envío y cuánto demora?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p><strong>Costos de envío:</strong></p>
+              <ul>
+                <li>Lima Metropolitana: S/ 15 (GRATIS en compras mayores a S/ 150)</li>
+                <li>Lima Provincia: S/ 25</li>
+                <li>Provincias: S/ 35 - S/ 50</li>
+              </ul>
+              <p><strong>Tiempos de entrega:</strong></p>
+              <ul>
+                <li>Lima Metro: 1-2 días hábiles</li>
+                <li>Lima Provincia: 2-3 días hábiles</li>
+                <li>Provincias: 3-7 días hábiles</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Puedo rastrear mi pedido?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Sí, una vez enviado tu pedido recibirás un código de seguimiento por email y WhatsApp. Puedes rastrear tu envío en tiempo real desde tu cuenta o contactándonos directamente.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Qué pasa si no estoy en casa al momento de la entrega?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Nuestro equipo de delivery intentará contactarte. Si no estás disponible, reprogramaremos la entrega para el día siguiente sin costo adicional. También puedes coordinar la entrega en tu trabajo u otra dirección.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Realizan entregas los fines de semana?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Realizamos entregas de lunes a sábado de 9:00 AM a 6:00 PM. Los domingos no realizamos entregas, pero puedes recoger tu pedido en nuestra tienda de 10:00 AM a 2:00 PM.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GARANTÍAS -->
+        <div class="faq-categoria" data-categoria="garantias">
+          <h2 class="categoria-titulo">🛡️ Garantías y Devoluciones</h2>
+          
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Qué garantía tienen los productos?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Todos nuestros productos incluyen:</p>
+              <ul>
+                <li><strong>Garantía del fabricante:</strong> Según especificaciones (6 meses a 3 años)</li>
+                <li><strong>Garantía TechSolvers:</strong> 30 días adicionales por defectos</li>
+                <li><strong>Garantía extendida:</strong> Disponible para productos seleccionados (hasta 2 años)</li>
+              </ul>
+              <p>La garantía cubre defectos de fábrica, no daños por mal uso.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Puedo devolver un producto si no me gusta?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Sí, tienes <strong>7 días</strong> para devolver productos en estado original (sin usar, con empaques y accesorios). Excluimos productos personalizados, software descargado y artículos de higiene personal.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cómo hago válida la garantía?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Para hacer válida la garantía necesitas:</p>
+              <ol>
+                <li>Boleta o factura de compra</li>
+                <li>Producto en su empaque original</li>
+                <li>Descripción del problema</li>
+                <li>Contactar nuestro servicio técnico</li>
+              </ol>
+              <p>Evaluamos el producto y determinamos si procede reparación, cambio o reembolso.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- SERVICIOS TÉCNICOS -->
+        <div class="faq-categoria" data-categoria="servicios">
+          <h2 class="categoria-titulo">🔧 Servicios Técnicos</h2>
+          
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Qué tipos de reparaciones realizan?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Ofrecemos servicios técnicos especializados en:</p>
+              <ul>
+                <li><strong>Computadoras:</strong> Hardware, software, limpieza, optimización</li>
+                <li><strong>Laptops:</strong> Pantallas, teclados, ventiladores, baterías</li>
+                <li><strong>Celulares:</strong> Pantallas, baterías, botones, software</li>
+                <li><strong>Impresoras:</strong> Mantenimiento, reparación, configuración</li>
+                <li><strong>Equipos de audio:</strong> Parlantes, audífonos, amplificadores</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cuánto demora una reparación?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Los tiempos varían según la complejidad:</p>
+              <ul>
+                <li>Diagnóstico: 24-48 horas</li>
+                <li>Reparaciones simples: 1-3 días</li>
+                <li>Reparaciones complejas: 5-10 días</li>
+                <li>Reparaciones con repuestos especiales: 10-15 días</li>
+              </ul>
+              <p>Te mantenemos informado del progreso en todo momento.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Los repuestos son originales?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Siempre priorizamos repuestos originales. Si no están disponibles, usamos repuestos compatibles de alta calidad y te informamos antes de proceder. Todos los repuestos tienen garantía.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Ofrecen servicio técnico a domicilio?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Sí, ofrecemos servicio a domicilio en Lima Metropolitana para:</p>
+              <ul>
+                <li>Configuración de equipos nuevos</li>
+                <li>Instalación de software</li>
+                <li>Mantenimiento preventivo</li>
+                <li>Soporte técnico empresarial</li>
+              </ul>
+              <p>Costo adicional: S/ 30 por visita + costo del servicio.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÉTODOS DE PAGO -->
+        <div class="faq-categoria" data-categoria="pagos">
+          <h2 class="categoria-titulo">💳 Métodos de Pago</h2>
+          
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Qué métodos de pago aceptan?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Aceptamos diversos métodos de pago:</p>
+              <ul>
+                <li><strong>Efectivo:</strong> En tienda o contra entrega</li>
+                <li><strong>Yape/Plin:</strong> Transferencias instantáneas</li>
+                <li><strong>Tarjetas:</strong> Visa, Mastercard (débito y crédito)</li>
+                <li><strong>Transferencia bancaria:</strong> BCP, BBVA, Interbank, Scotiabank</li>
+                <li><strong>Depósito bancario:</strong> En agentes o cajeros</li>
+              </ul>
+              <p><strong>Próximamente:</strong> Criptomonedas estables (USDT, USDC)</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Puedo pagar en cuotas?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Sí, ofrecemos financiamiento:</p>
+              <ul>
+                <li><strong>Tarjetas de crédito:</strong> Hasta 12 cuotas sin intereses en productos seleccionados</li>
+                <li><strong>Financiamiento directo:</strong> 3-6 cuotas con evaluación crediticia</li>
+                <li><strong>Separado:</strong> 50% al separar, 50% al recoger (máximo 15 días)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Es seguro pagar online?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Absolutamente. Implementamos:</p>
+              <ul>
+                <li>Cifrado SSL de 256 bits</li>
+                <li>Autenticación multifactor (MFA)</li>
+                <li>Procesamiento seguro con bancos peruanos</li>
+                <li>Cumplimiento de normativas PCI DSS</li>
+                <li>Monitoreo 24/7 de transacciones</li>
+              </ul>
+              <p>Nunca almacenamos datos de tarjetas en nuestros servidores.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MI CUENTA -->
+        <div class="faq-categoria" data-categoria="cuenta">
+          <h2 class="categoria-titulo">👤 Mi Cuenta y Perfil</h2>
+          
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cómo creo una cuenta en TechSolvers?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Crear una cuenta es simple y gratis:</p>
+              <ol>
+                <li>Haz clic en "Registro" en el menú superior</li>
+                <li>Completa tus datos personales</li>
+                <li>Verifica tu email</li>
+                <li>¡Listo! Ya puedes comprar y acceder a beneficios exclusivos</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Qué beneficios tiene tener una cuenta?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Los beneficios incluyen:</p>
+              <ul>
+                <li>Historial completo de compras y garantías</li>
+                <li>Seguimiento de pedidos en tiempo real</li>
+                <li>Descuentos exclusivos para clientes registrados</li>
+                <li>Carrito guardado entre sesiones</li>
+                <li>Direcciones de envío guardadas</li>
+                <li>Notificaciones de ofertas y productos nuevos</li>
+                <li>Soporte técnico prioritario</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cómo actualizo mis datos personales?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Para actualizar tus datos:</p>
+              <ol>
+                <li>Inicia sesión en tu cuenta</li>
+                <li>Ve a "Mi Perfil" en el menú de usuario</li>
+                <li>Edita la información que necesites cambiar</li>
+                <li>Guarda los cambios</li>
+              </ol>
+              <p>Para cambios sensibles (email, contraseña) requerimos verificación adicional.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFAQ(this)">
+            <div class="faq-pregunta">
+              <span>¿Cómo recupero mi contraseña?</span>
+              <span class="faq-icono">+</span>
+            </div>
+            <div class="faq-respuesta">
+              <p>Si olvidaste tu contraseña:</p>
+              <ol>
+                <li>Ve a la página de login</li>
+                <li>Haz clic en "¿Olvidaste tu contraseña?"</li>
+                <li>Ingresa tu email registrado</li>
+                <li>Revisa tu correo y sigue las instrucciones</li>
+                <li>Crea una nueva contraseña segura</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================
+         CONTACTO Y SOPORTE
+    ======================================== -->
+    <section class="contacto-faq-section">
+      <div class="container">
+        <h2>¿No encontraste lo que buscabas?</h2>
+        <p>Nuestro equipo de soporte está aquí para ayudarte</p>
+        
+        <div class="contacto-opciones">
+          <div class="contacto-opcion">
+            <span class="contacto-icono">💬</span>
+            <h3>WhatsApp</h3>
+            <p>Respuesta inmediata</p>
+            <a href="https://wa.me/51123456789" target="_blank" class="btn-contacto">
+              Escribir ahora
+            </a>
+          </div>
+
+          <div class="contacto-opcion">
+            <span class="contacto-icono">📧</span>
+            <h3>Email</h3>
+            <p>Respuesta en 24 horas</p>
+            <a href="mailto:info@techsolvers.pe" class="btn-contacto">
+              Enviar email
+            </a>
+          </div>
+
+          <div class="contacto-opcion">
+            <span class="contacto-icono">📞</span>
+            <h3>Teléfono</h3>
+            <p>Lun - Sáb: 9AM - 6PM</p>
+            <a href="tel:+51123456789" class="btn-contacto">
+              Llamar ahora
+            </a>
+          </div>
+
+          <div class="contacto-opcion">
+            <span class="contacto-icono">🏪</span>
+            <h3>Tienda física</h3>
+            <p>Comas, Lima</p>
+            <a href="contacto.html" class="btn-contacto">
+              Ver ubicación
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================
+       FOOTER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="imagenes/logotechsolvers.jpg" alt="Logo TechSolvers" class="logo-footer">
+        <p style="margin-top: 15px; color: #ccc; font-size: 14px;">
+          Tu tienda de confianza en tecnología desde 2020. Calidad, servicio y garantía en cada producto.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li onclick="window.location.href='productos.html?categoria=computadoras'">Computadoras</li>
+          <li onclick="window.location.href='productos.html?categoria=celulares'">Celulares</li>
+          <li onclick="window.location.href='productos.html?categoria=audio'">Audio</li>
+          <li onclick="window.location.href='productos.html?categoria=impresoras'">Impresoras</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li onclick="window.location.href='nosotros.html'">Nuestra Historia</li>
+          <li onclick="window.location.href='contacto.html'">Ubicación</li>
+          <li onclick="window.location.href='faq.html'">Preguntas Frecuentes</li>
+          <li onclick="window.location.href='#'">Términos y Condiciones</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Asesor de ventas
+          </li>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Soporte técnico
+          </li>
+          <li onclick="window.location.href='tel:+51123456789'">📞 +51 123 456 789</li>
+          <li onclick="window.location.href='mailto:info@techsolvers.pe'">📧 info@techsolvers.pe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; TechSolvers 2025 - Todos los derechos reservados | Desarrollado con ❤️ en Lima, Perú
+    </div>
+  </footer>
+
+  <!-- ========================================
+       JAVASCRIPT - PRIMERO GLOBAL, LUEGO ESPECÍFICO
+  ======================================== -->
+
+  <!-- JS GLOBAL (se carga en todas las páginas) -->
+  <script src="js/global.js"></script>
+
+  <!-- JS ESPECÍFICO DE ESTA PÁGINA -->
+  <script src="js/faq.js"></script>
+
+</body>
+
+</html>

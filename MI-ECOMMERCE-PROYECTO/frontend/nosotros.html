@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nosotros - TechSolvers | Empresa Líder en Tecnología</title>
+  <meta name="description"
+    content="Conoce la historia de TechSolvers. Empresa peruana líder en productos tecnológicos e informáticos en Lima, Comas. Misión, visión y valores.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS GLOBAL (para todas las páginas) -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- CSS ESPECÍFICO DE ESTA PÁGINA -->
+  <link rel="stylesheet" href="css/nosotros.css">
+</head>
+
+<body>
+
+  <!-- ========================================
+       HEADER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <header class="header-superior">
+    <div class="logo">
+      <img src="imagenes/logotechsolvers.jpg" alt="TechSolvers Logo">
+      TechSolvers
+    </div>
+
+    <div class="search-container">
+      <label for="search" class="sr-only">Buscar productos</label>
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search" class="search-box" placeholder="Buscar productos...">
+    </div>
+
+    <div class="user-actions">
+      <a href="login.html">Login</a>
+      <a href="registro-nuevo.html">Registro</a>
+      <a href="carrito.html" id="carrito-link">🛒 Carrito</a>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN SECUNDARIA -->
+  <nav class="navegacion-secundaria">
+    <ul class="nav-menu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="categorias.html">Categorías</a></li>
+      <li><a href="servicio-tecnico.html">Servicio Técnico</a></li>
+      <li><a href="nosotros.html" class="active">Nosotros</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ========================================
+       CONTENIDO ESPECÍFICO DE NOSOTROS
+  ======================================== -->
+  <main>
+    <!-- ========================================
+         HERO SECTION NOSOTROS
+    ======================================== -->
+    <section class="hero-nosotros">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">Sobre TechSolvers</h1>
+          <p class="hero-subtitle">
+            Empresa peruana líder en tecnología e informática, comprometida con brindar productos y servicios 
+            de calidad que sean accesibles para todos nuestros clientes.
+          </p>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Años de experiencia</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">1000+</span>
+              <span class="stat-label">Clientes satisfechos</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">Productos disponibles</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">Soporte técnico</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="imagenes/logotechsolvers.jpg" alt="TechSolvers - Empresa de Tecnología" class="empresa-logo">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         MISIÓN Y VISIÓN
+    ======================================== -->
+    <section class="mision-vision-section">
+      <div class="container">
+        <div class="mision-vision-grid">
+          
+          <!-- MISIÓN -->
+          <div class="mision-card">
+            <div class="icono-container">
+              <span class="icono">🎯</span>
+            </div>
+            <h2>Nuestra Misión</h2>
+            <p>
+              Somos una empresa que brinda productos tecnológicos y servicios de calidad que generan un valor 
+              agregado que sea accesibles para nuestro público.
+            </p>
+            <div class="card-footer">
+              <span class="highlight">Calidad • Accesibilidad • Valor agregado</span>
+            </div>
+          </div>
+
+          <!-- VISIÓN -->
+          <div class="vision-card">
+            <div class="icono-container">
+              <span class="icono">🚀</span>
+            </div>
+            <h2>Nuestra Visión</h2>
+            <p>
+              Ser la empresa líder en distribución nacional de productos tecnológicos e informáticos, 
+              expandiendo nuestro alcance por todo el Perú.
+            </p>
+            <div class="card-footer">
+              <span class="highlight">Liderazgo • Nacional • Tecnología</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         NUESTROS VALORES
+    ======================================== -->
+    <section class="valores-section">
+      <div class="container">
+        <h2 class="seccion-titulo">💎 Nuestros Valores</h2>
+        <p class="seccion-subtitulo">
+          Los principios que guían nuestro trabajo diario y nuestra relación con los clientes
+        </p>
+        
+        <div class="valores-grid">
+          <div class="valor-card">
+            <span class="valor-icono">🛡️</span>
+            <h3>Confianza</h3>
+            <p>Construimos relaciones duraderas basadas en la transparencia y honestidad.</p>
+          </div>
+
+          <div class="valor-card">
+            <span class="valor-icono">⚡</span>
+            <h3>Innovación</h3>
+            <p>Nos mantenemos a la vanguardia tecnológica para ofrecer las mejores soluciones.</p>
+          </div>
+
+          <div class="valor-card">
+            <span class="valor-icono">🎯</span>
+            <h3>Calidad</h3>
+            <p>Cada producto y servicio cumple con los más altos estándares de calidad.</p>
+          </div>
+
+          <div class="valor-card">
+            <span class="valor-icono">🤝</span>
+            <h3>Compromiso</h3>
+            <p>Estamos comprometidos con la satisfacción total de nuestros clientes.</p>
+          </div>
+
+          <div class="valor-card">
+            <span class="valor-icono">💡</span>
+            <h3>Accesibilidad</h3>
+            <p>Hacemos la tecnología accesible para todos, sin importar el presupuesto.</p>
+          </div>
+
+          <div class="valor-card">
+            <span class="valor-icono">🔒</span>
+            <h3>Seguridad</h3>
+            <p>Protegemos los datos y garantizamos transacciones 100% seguras.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         NUESTRA HISTORIA
+    ======================================== -->
+    <section class="historia-section">
+      <div class="container">
+        <h2 class="seccion-titulo">📖 Nuestra Historia</h2>
+        
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-fecha">2020</div>
+            <div class="timeline-content">
+              <h3>Fundación de TechSolvers</h3>
+              <p>
+                Iniciamos como una pequeña empresa familiar en Comas, Lima, con la visión de democratizar 
+                el acceso a la tecnología en el Perú.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-fecha">2021</div>
+            <div class="timeline-content">
+              <h3>Expansión de Servicios</h3>
+              <p>
+                Incorporamos servicios técnicos especializados y ampliamos nuestro catálogo de productos 
+                para satisfacer más necesidades tecnológicas.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-fecha">2022</div>
+            <div class="timeline-content">
+              <h3>Registro Legal</h3>
+              <p>
+                Formalizamos completamente la empresa, registrándonos en INDECOPI y cumpliendo con todas 
+                las normativas peruanas de protección de datos (Ley N° 29733).
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-fecha">2023</div>
+            <div class="timeline-content">
+              <h3>Transformación Digital</h3>
+              <p>
+                Lanzamos nuestra plataforma de ecommerce, permitiendo a los clientes comprar desde 
+                la comodidad de sus hogares con total seguridad.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-fecha">2024</div>
+            <div class="timeline-content">
+              <h3>Crecimiento y Reconocimiento</h3>
+              <p>
+                Alcanzamos más de 1000 clientes satisfechos y nos posicionamos como referente 
+                en tecnología accesible en Lima Norte.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-fecha">2025</div>
+            <div class="timeline-content">
+              <h3>Expansión Nacional</h3>
+              <p>
+                Comenzamos nuestros planes de expansión a nivel nacional, con miras a convertirnos 
+                en el líder peruano en distribución tecnológica.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         SECTOR Y MARCO LEGAL
+    ======================================== -->
+    <section class="sector-legal-section">
+      <div class="container">
+        <div class="sector-legal-grid">
+          
+          <div class="sector-card">
+            <h2>🏢 Nuestro Sector</h2>
+            <p>
+              <strong>TechSolvers</strong> se encuentra en el sector informático y tecnológico, dedicándose 
+              al comercio y venta de productos electrónicos y tecnológicos.
+            </p>
+            <ul class="sector-lista">
+              <li>✅ Comercio electrónico especializado</li>
+              <li>✅ Venta de productos tecnológicos</li>
+              <li>✅ Servicios técnicos especializados</li>
+              <li>✅ Compras rápidas y seguras</li>
+              <li>✅ Garantía en todos los productos</li>
+            </ul>
+          </div>
+
+          <div class="legal-card">
+            <h2>⚖️ Marco Legal</h2>
+            <p>
+              Operamos bajo estricto cumplimiento de las normativas peruanas, garantizando 
+              transparencia y legalidad en todas nuestras operaciones.
+            </p>
+            <ul class="legal-lista">
+              <li>📋 Registrados en INDECOPI</li>
+              <li>🔐 Cumplimiento Ley N° 29733 (Protección de Datos)</li>
+              <li>📜 Decreto Supremo 003-2013-JUS</li>
+              <li>🛡️ Política de privacidad actualizada</li>
+              <li>⚡ Ventas legales bajo normativa peruana</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         VANGUARDIA TECNOLÓGICA
+    ======================================== -->
+    <section class="vanguardia-section">
+      <div class="container">
+        <h2 class="seccion-titulo">🔬 Vanguardia Tecnológica</h2>
+        <p class="seccion-subtitulo">
+          Nos mantenemos a la vanguardia de la tecnología para ofrecer servicios eficaces y de calidad
+        </p>
+
+        <div class="vanguardia-grid">
+          <div class="tech-feature">
+            <span class="tech-icono">🔄</span>
+            <h3>Actualización Constante</h3>
+            <p>
+              Nos actualizamos constantemente apoyándonos en la tecnología para ofrecer 
+              servicios de calidad y ser eficaces ante las necesidades del usuario.
+            </p>
+          </div>
+
+          <div class="tech-feature">
+            <span class="tech-icono">🛒</span>
+            <h3>Compras Eficientes</h3>
+            <p>
+              Con la integración de tecnología, las compras son eficientes, 
+              complaciendo al usuario con una experiencia fluida y satisfactoria.
+            </p>
+          </div>
+
+          <div class="tech-feature">
+            <span class="tech-icono">🔐</span>
+            <h3>Seguridad Avanzada</h3>
+            <p>
+              Implementamos autenticación multifactor (MFA) y cifrado de extremo a extremo 
+              en todas las transacciones y datos sensibles.
+            </p>
+          </div>
+
+          <div class="tech-feature">
+            <span class="tech-icono">💳</span>
+            <h3>Métodos de Pago Diversos</h3>
+            <p>
+              Ofrecemos múltiples opciones: efectivo, tarjetas, Yape, transferencias 
+              y próximamente criptomonedas estables.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         PLANES FUTUROS
+    ======================================== -->
+    <section class="planes-section">
+      <div class="container">
+        <h2 class="seccion-titulo">🚀 Nuestros Planes</h2>
+        
+        <div class="planes-grid">
+          
+          <!-- EXPANSIÓN DE SERVICIOS -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-icono">📈</span>
+              <h3>Expansión de Servicios</h3>
+            </div>
+            
+            <div class="plan-objetivo">
+              <h4>🎯 Objetivo:</h4>
+              <p>Expandir y diversificar nuestros productos aumentando nuestra cartera de clientes.</p>
+            </div>
+
+            <div class="plan-acciones">
+              <h4>⚡ Acciones:</h4>
+              <ul>
+                <li>
+                  <strong>Nueva cartera de productos:</strong> No solo electrónicos, 
+                  también ropa y otros productos diversos.
+                </li>
+                <li>
+                  <strong>Descuentos exclusivos:</strong> Promociones especiales para 
+                  clientes antiguos incentivando la compra.
+                </li>
+                <li>
+                  <strong>Más métodos de pago:</strong> Efectivo, criptomonedas estables, 
+                  carteras digitales para más usuarios.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- SEGURIDAD -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-icono">🛡️</span>
+              <h3>Estándares de Seguridad</h3>
+            </div>
+            
+            <div class="plan-objetivo">
+              <h4>🎯 Objetivo:</h4>
+              <p>Cumplir con los estándares de seguridad actuales y las normativas gubernamentales.</p>
+            </div>
+
+            <div class="plan-acciones">
+              <h4>⚡ Acciones:</h4>
+              <ul>
+                <li>
+                  <strong>Seguridad digital avanzada:</strong> Implementar autenticación 
+                  multifactor (MFA) en todas las cuentas.
+                </li>
+                <li>
+                  <strong>Cifrado extremo a extremo:</strong> Protección total en 
+                  transacciones y datos sensibles.
+                </li>
+                <li>
+                  <strong>Cumplimiento normativo:</strong> Actualización constante 
+                  según regulaciones gubernamentales.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MARKETING DIGITAL -->
+          <div class="plan-card">
+            <div class="plan-header">
+              <span class="plan-icono">📱</span>
+              <h3>Expansión Digital</h3>
+            </div>
+            
+            <div class="plan-objetivo">
+              <h4>🎯 Objetivo:</h4>
+              <p>Ampliar nuestra presencia digital y competir en un mercado más amplio.</p>
+            </div>
+
+            <div class="plan-acciones">
+              <h4>⚡ Acciones:</h4>
+              <ul>
+                <li>
+                  <strong>Redes sociales:</strong> Publicidad estratégica en 
+                  Facebook e Instagram.
+                </li>
+                <li>
+                  <strong>Aplicativo móvil:</strong> Desarrollo de app nativa 
+                  para mejor experiencia.
+                </li>
+                <li>
+                  <strong>Marketing digital:</strong> Estrategias SEO y SEM 
+                  para mayor alcance.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         NUESTRO EQUIPO
+    ======================================== -->
+    <section class="equipo-section">
+      <div class="container">
+        <h2 class="seccion-titulo">👥 Nuestro Equipo</h2>
+        <p class="seccion-subtitulo">
+          Profesionales apasionados por la tecnología y comprometidos con tu satisfacción
+        </p>
+
+        <div class="equipo-grid">
+          <div class="miembro-card">
+            <div class="miembro-foto">
+              <span class="foto-placeholder">👨‍💼</span>
+            </div>
+            <h3>Gerencia General</h3>
+            <p class="cargo">Liderazgo Estratégico</p>
+            <p class="descripcion">
+              Dirigiendo la visión empresarial y estableciendo estrategias 
+              para el crecimiento sostenible de TechSolvers.
+            </p>
+          </div>
+
+          <div class="miembro-card">
+            <div class="miembro-foto">
+              <span class="foto-placeholder">👨‍💻</span>
+            </div>
+            <h3>Equipo Técnico</h3>
+            <p class="cargo">Especialistas en Reparación</p>
+            <p class="descripcion">
+              Técnicos certificados en reparación de PC, celulares, impresoras 
+              y todo tipo de dispositivos tecnológicos.
+            </p>
+          </div>
+
+          <div class="miembro-card">
+            <div class="miembro-foto">
+              <span class="foto-placeholder">👩‍💼</span>
+            </div>
+            <h3>Atención al Cliente</h3>
+            <p class="cargo">Soporte y Ventas</p>
+            <p class="descripcion">
+              Equipo dedicado a brindar la mejor experiencia de compra 
+              y resolver todas tus consultas tecnológicas.
+            </p>
+          </div>
+
+          <div class="miembro-card">
+            <div class="miembro-foto">
+              <span class="foto-placeholder">👨‍🔧</span>
+            </div>
+            <h3>Logística</h3>
+            <p class="cargo">Envíos y Distribución</p>
+            <p class="descripcion">
+              Encargados de que tus productos lleguen en perfecto estado 
+              y en el menor tiempo posible.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         UBICACIÓN
+    ======================================== -->
+    <section class="ubicacion-section">
+      <div class="container">
+        <h2 class="seccion-titulo">📍 Nuestra Ubicación</h2>
+        
+        <div class="ubicacion-grid">
+          <div class="ubicacion-info">
+            <h3>🏢 TechSolvers - Sede Principal</h3>
+            <div class="info-item">
+              <span class="info-icono">📍</span>
+              <div>
+                <strong>Dirección:</strong>
+                <p>Av. Principal 123, Comas, Lima, Perú</p>
+                <p>Cerca al Metro de Los Olivos</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icono">⏰</span>
+              <div>
+                <strong>Horarios de Atención:</strong>
+                <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                <p>Sábados: 9:00 AM - 2:00 PM</p>
+                <p>Domingos: Cerrado</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="info-icono">📱</span>
+              <div>
+                <strong>Contacto:</strong>
+                <p>Teléfono: +51 123 456 789</p>
+                <p>WhatsApp: +51 123 456 789</p>
+                <p>Email: info@techsolvers.pe</p>
+              </div>
+            </div>
+
+            <div class="botones-contacto">
+              <a href="https://wa.me/51123456789" target="_blank" class="btn-whatsapp">
+                💬 Contactar por WhatsApp
+              </a>
+              <a href="contacto.html" class="btn-contacto">
+                📧 Formulario de Contacto
+              </a>
+            </div>
+          </div>
+
+          <div class="mapa-container">
+            <div class="mapa-placeholder">
+              <span class="mapa-icono">🗺️</span>
+              <h4>Mapa de Ubicación</h4>
+              <p>Comas, Lima, Perú</p>
+              <p class="mapa-nota">
+                * Estamos ubicados en una zona accesible cerca al Metro de Los Olivos, 
+                con fácil acceso en transporte público y privado.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================
+         CALL TO ACTION
+    ======================================== -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2>¿Listo para unirte a la familia TechSolvers?</h2>
+          <p>
+            Descubre por qué más de 1000 clientes confían en nosotros para sus necesidades tecnológicas.
+          </p>
+          <div class="cta-buttons">
+            <a href="productos.html" class="btn-primary">
+              🛍️ Ver Productos
+            </a>
+            <a href="servicio-tecnico.html" class="btn-secondary">
+              🔧 Servicios Técnicos
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================
+       FOOTER - REUTILIZABLE EN TODAS LAS PÁGINAS
+  ======================================== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <img src="imagenes/logotechsolvers.jpg" alt="Logo TechSolvers" class="logo-footer">
+        <p style="margin-top: 15px; color: #ccc; font-size: 14px;">
+          Tu tienda de confianza en tecnología desde 2020. Calidad, servicio y garantía en cada producto.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h4>Productos</h4>
+        <ul>
+          <li onclick="window.location.href='productos.html?categoria=computadoras'">Computadoras</li>
+          <li onclick="window.location.href='productos.html?categoria=celulares'">Celulares</li>
+          <li onclick="window.location.href='productos.html?categoria=audio'">Audio</li>
+          <li onclick="window.location.href='productos.html?categoria=impresoras'">Impresoras</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li onclick="window.location.href='nosotros.html'">Nuestra Historia</li>
+          <li onclick="window.location.href='contacto.html'">Ubicación</li>
+          <li onclick="window.location.href='faq.html'">Preguntas Frecuentes</li>
+          <li onclick="window.location.href='#'">Términos y Condiciones</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Asesor de ventas
+          </li>
+          <li onclick="window.open('https://wa.me/51123456789', '_blank')">
+            <img src="imagenes/logoWhassap.png" alt="WhatsApp" class="icono-whatsapp">
+            Soporte técnico
+          </li>
+          <li onclick="window.location.href='tel:+51123456789'">📞 +51 123 456 789</li>
+          <li onclick="window.location.href='mailto:info@techsolvers.pe'">📧 info@techsolvers.pe</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; TechSolvers 2025 - Todos los derechos reservados | Desarrollado con ❤️ en Lima, Perú
+    </div>
+  </footer>
+
+  <!-- ========================================
+       JAVASCRIPT - PRIMERO GLOBAL, LUEGO ESPECÍFICO
+  ======================================== -->
+
+  <!-- JS GLOBAL (se carga en todas las páginas) -->
+  <script src="js/global.js"></script>
+
+  <!-- JS ESPECÍFICO DE ESTA PÁGINA -->
+  <script src="js/nosotros.js"></script>
+
+</body>
+
+</html>
