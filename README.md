@@ -13,21 +13,6 @@
 
 # Aplicación Web para Tecsolvers
 
-## 👥 Integrantes
-
-- **Meza Negreiros, Orlando**
-- **Bedon Silva, Yefli** – U22303932 
-- **Sotelo Chavez, Guillermo** – U21223156  
-- **Mariano Asencio, Erick** – U21224667   
-- **Valverde Montes, Stefano** – U22228444 
-
----
-
-## 🧩 Descripción del Problema
-
-**Tecsolve** es una empresa que se posiciona en el mercado como una opción rápida y de calidad para aquellos usuarios que desean comprar aparatos electrónicos.
-
-
 Actualmente, la empresa presenta las siguientes necesidades:
 
 - Diversificación de productos  
