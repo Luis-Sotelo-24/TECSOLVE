@@ -194,40 +194,66 @@ I-->J-->K-->L
 ## 📸 Vistas
 
 ### Login
+![Login](./TecSolve/vistas/login.jpg)
 
-![Login](./vistas/Login.jpg)
+### Registrar
+![Registrar](./TecSolve/vistas/registrar.jpg)
 
-### Registro
+### Página Principal
+![Página Principal](./TecSolve/vistas/paginaprincipal_1.jpg)
+![Página Principal](./TecSolve/vistas/paginaprincipal_2.jpg)
+![Página Principal](./TecSolve/vistas/paginaprincipal_3.jpg)
 
-![Registrate](./vistas/Registrate.jpg)
+### Categoría Smartphones
+![Categoría Smartphones](./TecSolve/vistas/categoriasmarthpones.jpg)
 
-### Categorías
+### Categoría TV
+![Categoría TV](./TecSolve/vistas/categoriatv.jpg)
 
-![NuestrasCategorias](./vistas/NuestrasCategorias.jpg)
+### Categoría Smart Watch
+![Categoría Smart Watch](./TecSolve/vistas/categoriasmartwatch.jpg)
 
-### Productos
+### Categoría Audifonos
+![Categoría Audifonos](./TecSolve/vistas/categoriaaudifonos.jpg)
 
-![NuestrosProductos](./vistas/NuestrosProductos.jpg)
+### Categoría Computadoras
+![Categoría Computadoras](./TecSolve/vistas/categoriacomputadoras.jpg)
 
-### Ubícanos
+### Carrito
+![Carrito](./TecSolve/vistas/carrito.jpg)
 
-![Ubicanos](./vistas/Ubicanos.jpg)
+### Finalizar Compra
+![Finalizar Compra](./TecSolve/vistas/finalizarcompra.jpg)
+
+### Comprobante
+![Comprobante](./TecSolve/vistas/comprobante.jpg)
+
+### Imprimir Comprobante
+![Imprimir Comprobante](./TecSolve/vistas/imprimircomprobante.jpg)
 
 ### Preguntas Frecuentes
+![Preguntas Frecuentes](./TecSolve/vistas/preguntasfrecuentes.jpg)
 
-![PreguntasFrecuentes](./vistas/PreguntasFrecuentes.jpg)
+### Consultas
+![Consultas](./TecSolve/vistas/consulta.jpg)
 
-### Dashboard
+### Página del Administrador
+![Página del Administrador](./TecSolve/vistas/administrador.jpg)
 
-![Dashboard](./vistas/Dashboard.jpg)
+### Administrador de Productos
+![Administrador de Productos](./TecSolve/vistas/administradorproductos.jpg)
 
-### Panel de Edición de Productos
+### Administrador de Pedidos
+![Administrador de Pedidos](./TecSolve/vistas/administradorpedidos.jpg)
 
-![EditarProductos](./vistas/EditarProductos.jpg)
+### Administrador de Reclamos
+![Administrador de Reclamos](./TecSolve/vistas/administradorreclamos.jpg)
 
-### Lista de Nuestros Usuarios
+### Administrador de Clientes
+![Administrador de Clientes](./TecSolve/vistas/administradorcliente.jpg)
 
-![ListaUsuarios](./vistas/ListaUsuarios.jpg)
+### Administrador de Agregar Clientes
+![Administrador de Agregar Clientes](./TecSolve/vistas/administradoragregarcliente.jpg)
 
 
 ## Base de datos (Tablas)
