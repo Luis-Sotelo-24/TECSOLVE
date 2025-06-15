@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Admin | TechSolvers</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet" />
+
+        <style>
+            * {
+                font-family: 'Inter', sans-serif;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f6f6f6;
+            }
+            
+            /* Sidebar styles */
+            .sidebar {
+                width: 280px;
+                height: 100vh;
+                background-color: #E6EFFD;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                transition: all 0.3s ease;
+            }
+            
+            .sidebar a {
+                color: #333;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+            
+            .sidebar .nav-link {
+                color: #333;
+                border-radius: 8px;
+                margin-bottom: 5px;
+                padding: 12px 16px;
+                transition: all 0.3s ease;
+            }
+            
+            .sidebar .nav-link:hover {
+                background-color: rgba(28, 97, 231, 0.1);
+                color: #1C61E7;
+            }
+            
+            .sidebar .nav-link.active {
+                background-color: #1C61E7;
+                color: white;
+            }
+            
+            .sidebar .text-danger {
+                color: #dc3545 !important;
+            }
+            
+            .sidebar .text-danger:hover {
+                background-color: rgba(220, 53, 69, 0.1);
+            }
+            
+            /* Content styles */
+            .content {
+                margin-left: 280px;
+                min-height: 100vh;
+                background-color: #f6f6f6;
+            }
+            
+            .header {
+                background-color: white;
+                border-bottom: 1px solid #dee2e6;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            /* Cards and buttons */
+            .card-indicator {
+                border-left: 4px solid #1C61E7;
+                transition: transform 0.3s ease;
+            }
+            
+            .card-indicator:hover {
+                transform: translateY(-2px);
+            }
+            
+            .btn-primary {
+                background-color: #1C61E7;
+                border-color: #1C61E7;
+            }
+            
+            .btn-primary:hover {
+                background-color: #154db8;
+                border-color: #154db8;
+            }
+            
+            .btn-outline-success {
+                border-color: #28a745;
+                color: #28a745;
+            }
+            
+            .btn-outline-success:hover {
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+            
+            .btn-secondary {
+                background-color: #6c757d;
+                border-color: #6c757d;
+            }
+            
+            .btn-outline-secondary {
+                border-color: #6c757d;
+                color: #6c757d;
+            }
+            
+            .btn-outline-secondary:hover {
+                background-color: #6c757d;
+                border-color: #6c757d;
+            }
+            
+            /* Table styles */
+            .table-dark {
+                background-color: #1C61E7;
+            }
+            
+            .table-striped > tbody > tr:nth-of-type(odd) > td {
+                background-color: rgba(28, 97, 231, 0.05);
+            }
+            
+            /* Modal styles */
+            .modal-header {
+                background-color: #1C61E7;
+                color: white;
+            }
+            
+            .modal-header .btn-close {
+                filter: invert(1);
+            }
+            
+            /* Alert styles */
+            .alert-info {
+                background-color: rgba(28, 97, 231, 0.1);
+                border-color: #1C61E7;
+                color: #0f3a8f;
+            }
+            
+            .alert-secondary {
+                background-color: rgba(108, 117, 125, 0.1);
+                border-color: #6c757d;
+                color: #495057;
+            }
+            
+            .alert-light {
+                background-color: rgba(248, 249, 250, 0.8);
+                border-color: #dee2e6;
+                color: #6c757d;
+            }
+            
+            /* Floating button */
+            .btn-floating {
+                background-color: #1C61E7;
+                border-color: #1C61E7;
+                box-shadow: 0 4px 12px rgba(28, 97, 231, 0.4);
+                transition: all 0.3s ease;
+            }
+            
+            .btn-floating:hover {
+                background-color: #154db8;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(28, 97, 231, 0.6);
+            }
+            
+            /* Form controls */
+            .form-control:focus, .form-select:focus {
+                border-color: #1C61E7;
+                box-shadow: 0 0 0 0.2rem rgba(28, 97, 231, 0.25);
+            }
+            
+            /* Responsive */
+            @media (max-width: 768px) {
+                .sidebar {
+                    transform: translateX(-100%);
+                }
+                
+                .sidebar.show {
+                    transform: translateX(0);
+                }
+                
+                .content {
+                    margin-left: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Sidebar -->
+        <div class="sidebar position-fixed d-flex flex-column p-3">
+            <a href="/admin" class="d-flex align-items-center mb-4 text-decoration-none">
+                <i class="fas fa-microchip fs-3 me-2" style="color: #1C61E7;"></i>
+                <span class="fs-4 fw-semibold" style="color: #1C61E7;"> TechSolvers</span>
+            </a>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li><a href="/admin" class="nav-link"><i class="fas fa-home me-2"></i> Inicio</a></li>
+                <li><a href="/adminproductos" class="nav-link active"><i class="fas fa-box-open me-2"></i> Productos</a></li>
+                <li><a href="/adminventas" class="nav-link"><i class="fas fa-shopping-cart me-2"></i> Pedidos</a></li>
+                <li><a href="/adminreclamos" class="nav-link"><i class="fas fa-exclamation-triangle me-2"></i> Reclamos</a></li>
+                <li><a href="/adminclientes" class="nav-link"><i class="fas fa-users me-2"></i> Clientes</a></li>
+            </ul>
+            <hr />
+            <div class="mt-auto">
+                <a class="nav-link text-danger"><i class="fas fa-sign-out-alt me-2"></i>🚪 Cerrar sesión</a>
+            </div>
+        </div>
+
+        <!-- Page content -->
+        <div class="content">
+            <nav class="header navbar navbar-expand bg-white px-4 align-items-center">
+                <button class="btn btn-sm btn-outline-secondary me-3" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+                <div class="ms-auto d-flex align-items-center">
+                    <i class="fas fa-user-circle fa-2x text-secondary me-2"></i>
+                    <span th:text="'👋 Bienvenido, ' + ${session.nombreUsuario}">👋 Bienvenido, Admin</span>
+                    <a href="/logout" class="btn btn-outline-danger btn-sm ms-3">🚪 Cerrar sesión</a>
+                </div>
+            </nav>
+
+            <div class="container-fluid py-4">
+
+                <!-- Acciones -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalAgregar">
+                        <i class="fas fa-plus"></i>  Agregar Producto
+                    </button>
+                    <a href="/admin" class="btn btn-secondary">
+                        <i class="fas fa-home"></i>  Volver al Menú Principal
+                    </a>
+                </div>
+
+                <!-- Formulario combinado -->
+                <form method="get" action="/adminproductos" class="row g-2 mb-3 align-items-center">
+
+                    <!-- Indicadores clave -->
+                    <div class="row g-3 mb-4">
+                        <!-- Total Productos -->
+                        <div class="col-md-3">
+                            <div class="card card-indicator shadow-sm">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">📦 Total Productos</h6>
+                                    <h3 class="card-title text-primary"><span th:text="${totalProductos}">120</span></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Categorías -->
+                        <div class="col-md-3">
+                            <div class="card card-indicator shadow-sm">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">📂 Categorías</h6>
+                                    <h3 class="card-title text-info"><span th:text="${totalCategorias}">8</span></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Productos con stock bajo -->
+                        <div class="col-md-3">
+                            <div class="card card-indicator shadow-sm">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">⚠️ Stock Bajo</h6>
+                                    <h3 class="card-title text-warning"><span th:text="${productosStockBajo}">0</span></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Productos sin stock -->
+                        <div class="col-md-3">
+                            <div class="card card-indicator shadow-sm">
+                                <div class="card-body">
+                                    <h6 class="card-subtitle mb-2 text-muted">❌ Sin Stock</h6>
+                                    <h3 class="card-title text-danger"><span th:text="${productosSinStock}">0</span></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Búsqueda -->
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <input
+                                name="search"
+                                class="form-control"
+                                type="search"
+                                placeholder="🔍 Buscar producto..."
+                                th:value="${param.search != null ? param.search : ''}"
+                                />
+                            <button class="btn btn-primary px-4" type="submit">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filtro por categoría -->
+                    <div class="col-md-4">
+                        <select name="categoria" class="form-select" onchange="this.form.submit()">
+                            <option value="" th:selected="${param.categoria == null || param.categoria == ''}">📂 Seleccione una categoría</option>
+                            <option
+                                th:each="cat : ${categorias}"
+                                th:value="${cat}"
+                                th:text="${cat}"
+                                th:selected="${param.categoria != null && param.categoria == cat}"
+                                >
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Botón Mostrar Todas -->
+                    <div class="col-md-3">
+                        <a href="/adminproductos" class="btn btn-outline-secondary w-100">📋 Mostrar Todas</a>
+                    </div>
+                </form>
+
+                <!-- Estado del filtro -->
+                <div class="mb-3">
+                    <!-- Caso 1: Buscando y filtrando por categoría -->
+                    <div th:if="${param.search != null and param.search[0] != '' and param.categoria != null and param.categoria[0] != ''}" class="alert alert-info">
+                        🔍 Productos encontrados para: "<strong th:text="${param.search[0]}"></strong>" en la categoría: <strong th:text="${param.categoria[0]}"></strong>
+                    </div>
+
+                    <!-- Caso 2: Solo búsqueda -->
+                    <div th:if="${param.search != null and param.search[0] != '' and (param.categoria == null or param.categoria[0] == '')}" class="alert alert-info">
+                        🔍 Productos encontrados para: "<strong th:text="${param.search[0]}"></strong>"
+                    </div>
+
+                    <!-- Caso 3: Solo filtrado por categoría -->
+                    <div th:if="${param.categoria != null and param.categoria[0] != '' and (param.search == null or param.search[0] == '')}" class="alert alert-secondary">
+                        📂 Filtrando por categoría: <strong th:text="${param.categoria[0]}"></strong>
+                    </div>
+
+                    <!-- Caso 4: Nada seleccionado -->
+                    <div th:if="${(param.search == null or param.search[0] == '') and (param.categoria == null or param.categoria[0] == '')}" class="alert alert-light">
+                        📋 Todos los productos
+                    </div>
+                </div>
+
+                <!-- Tabla de productos -->
+                <div class="table-responsive mb-5">
+                    <table class="table table-striped align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>🖼️ Imagen</th>
+                                <th>🏷️ Nombre</th>
+                                <th>💰 Precio</th>
+                                <th>📦 Stock</th>
+                                <th>📂 Categoría</th>
+                                <th>⚙️ Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="prod : ${productos}">
+                                <td><img th:src="${prod.imagen}" alt="Imagen" style="width:60px; border-radius: 8px;" /></td>
+                                <td th:text="${prod.nombre}">Producto</td>
+                                <td th:text="${'S/. ' + #numbers.formatDecimal(prod.precio,1,0)}" class="fw-bold text-success">S/. 0.00</td>
+                                <td th:text="${prod.stock}" class="fw-bold">0</td>
+                                <td th:text="${prod.categoria}" class="text-muted">Categoría</td>
+                                <td>
+                                    <button
+                                        class="btn btn-sm btn-warning me-1"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEditar"
+                                        th:attr="data-id_prod=${prod.id_prod},
+                                        data-nombre=${prod.nombre},
+                                        data-descripcion=${prod.descripcion},
+                                        data-precio=${prod.precio},
+                                        data-stock=${prod.stock},
+                                        data-imagen=${prod.imagen},
+                                        data-categoria=${prod.categoria}"
+                                        >
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <a
+                                        th:href="@{/adminproductos/eliminar/{id_prod}(id_prod=${prod.id_prod})}"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('¿Eliminar este producto?')"
+                                        >
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Botón flotante -->
+                <button
+                    class="btn btn-primary btn-lg rounded-circle position-fixed btn-floating"
+                    style="bottom:30px; right:30px;"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalAgregar"
+                    >
+                    <i class="fas fa-plus"></i>
+                </button>
+
+                <!-- Modal Agregar -->
+                <div class="modal fade" id="modalAgregar" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="post" action="/adminproductos/guardar" class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">➕ Agregar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input name="nombre" class="form-control mb-2" placeholder="🏷️ Nombre" required />
+                                <textarea name="descripcion" class="form-control mb-2" placeholder="📝 Descripción" required></textarea>
+                                <input
+                                    name="precio"
+                                    type="number"
+                                    step="0.01"
+                                    class="form-control mb-2"
+                                    placeholder="💰 Precio"
+                                    required
+                                    />
+                                <input name="stock" type="number" class="form-control mb-2" placeholder="📦 Stock" required />
+                                <input name="imagen" class="form-control mb-2" placeholder="🖼️ URL de imagen" />
+                                <select class="form-select" id="miSelect" name="categoria" required>
+                                    <option selected disabled>📂 Selecciona una categoría</option>
+                                    <option value="Audifonos">🎧 Audifonos</option>
+                                    <option value="Smartphones">📱 Smartphones</option>
+                                    <option value="Tv">📺 TV</option>
+                                    <option value="Smart Watch">⌚ Smart Watch</option>
+                                    <option value="Computadoras">💻 Computadoras</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i>  Guardar
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fas fa-times"></i>  Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Modal Editar -->
+                <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="post" action="/adminproductos/guardar" class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">✏️ Editar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="id_prod" id="edit-id_prod" />
+                                <input name="nombre" id="edit-nombre" class="form-control mb-2" placeholder="🏷️ Nombre" required />
+                                <textarea
+                                    name="descripcion"
+                                    id="edit-descripcion"
+                                    class="form-control mb-2"
+                                    placeholder="📝 Descripción"
+                                    required
+                                    ></textarea>
+                                <input
+                                    name="precio"
+                                    id="edit-precio"
+                                    type="number"
+                                    step="0.01"
+                                    class="form-control mb-2"
+                                    placeholder="💰 Precio"
+                                    required
+                                    />
+                                <input
+                                    name="stock"
+                                    id="edit-stock"
+                                    type="number"
+                                    class="form-control mb-2"
+                                    placeholder="📦 Stock"
+                                    required
+                                    />
+                                <input name="imagen" id="edit-imagen" class="form-control mb-2" placeholder="🖼️ URL de imagen" />
+                                <select class="form-select" id="edit-categoria" name="categoria" required>
+                                    <option selected disabled>📂 Selecciona una categoría</option>
+                                    <option value="Audifonos">🎧 Audifonos</option>
+                                    <option value="Smartphones">📱 Smartphones</option>
+                                    <option value="Tv">📺 TV</option>
+                                    <option value="Smart Watch">⌚ Smart Watch</option>
+                                    <option value="Computadoras">💻 Computadoras</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>  Actualizar
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fas fa-times"></i>  Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JS -->
+        <script>
+            document.querySelectorAll('.precio').forEach(td => {
+                let val = parseFloat(td.textContent);
+                td.textContent = 'S/. ' + val.toFixed(2);
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const hayErrores = document.querySelector("#modalAgregar .text-danger") !== null;
+                if (hayErrores) {
+                    const modalAgregar = new bootstrap.Modal(document.getElementById('modalAgregar'));
+                    modalAgregar.show();
+                }
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.getElementById('toggleSidebar').addEventListener('click', () => {
+                document.querySelector('.sidebar').classList.toggle('d-none');
+                document.querySelector('.content').classList.toggle('collapsed');
+            });
+
+            const modalEditar = document.getElementById('modalEditar');
+            modalEditar?.addEventListener('show.bs.modal', event => {
+                const button = event.relatedTarget;
+                const id_prod = button.getAttribute('data-id_prod');
+                const nombre = button.getAttribute('data-nombre');
+                const descripcion = button.getAttribute('data-descripcion');
+                const precio = button.getAttribute('data-precio');
+                const stock = button.getAttribute('data-stock');
+                const imagen = button.getAttribute('data-imagen');
+                const categoria = button.getAttribute('data-categoria');
+
+                document.getElementById('edit-id_prod').value = id_prod;
+                document.getElementById('edit-nombre').value = nombre;
+                document.getElementById('edit-descripcion').value = descripcion;
+                document.getElementById('edit-precio').value = precio;
+                document.getElementById('edit-stock').value = stock;
+                document.getElementById('edit-imagen').value = imagen;
+                document.getElementById('edit-categoria').value = categoria;
+            });
+        </script>
+    </body>
+</html>
