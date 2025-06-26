@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reclamos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  </head>
+  <style>
+         header {
+      background-color: #b68d40;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+        nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+                footer {
+      background-color: #b68d40;
+      color: white;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer-col h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-col li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-footer {
+      width: 120px;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    .icono-whatsapp {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .footer-copy {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      padding-top: 10px;
+    }
+      </style>
+
+  </style>
+        <header>
+            <div class="logo"> Tech Solve</div>
+            <nav>
+                <ul>
+                    <li><a href="inicio">Inicio</a></li>
+                    <li><a href="listasmartwatch">Productos</a></li>
+                    <li><a href="carritocompras">Carrito de Compras</a></li>
+                    <li><a href="preguntasfrecuentes">Preguntas Frecuentes</a></li>
+                    <li><a href="">Mis Pedidos</a></li>
+                </ul>
+            </nav>
+            <div>
+            <span th:text="'Bienvenido, ' + ${session.cliente.nombreCli}"></span> <!-- Nombre del cliente -->
+            <a href="/logout" class="btn btn-outline-danger btn-sm ms-3">Cerrar sesión</a>
+        </div>
+        </header>
+  <body>
+   <section class="my-5">
+    <div class="container text-center mb-4">
+        <div class="row justify-content-center">
+            <div class="col-auto text-center">
+                <img src="https://webbox.imgix.net/images/hgbakasmkstikcls/d693f881-30fc-4a13-86bc-0ec2cf66c677.png?auto=format,compress&fit=crop&crop=entropy" widht="300px" height="160px">
+            </div>
+        </div>
+    </div>
+    <form method="POST" action="reclamos.php">
+        <div class="container">
+            <div class="row g-4">
+                <h1 class="mb-4">Identificación del Consumidor</h1>
+
+                <div class="col-12 col-md-6">
+
+                    <div class="mb-3">
+                        <label for="Nombre" class="form-label">Nombre Completo</label>
+                        <input  class="form-control">
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="DNI" class="form-label">DNI</label>
+                        <input  class="form-control" >
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Correo Electronico" class="form-label">Numero de Telefono</label>
+                        <input class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-6">
+
+                    <div class="mb-3">
+                        <label  class="form-label">Correo Electronico</label>
+                    <input type="email" class="form-control" placeholder="name@example.com">
+                        </div>
+
+                    <div class="mb-3">
+                        <label  class="form-label">Documento de identidad</label>
+                        <select class="form-select">
+                        <option selected>Selecciona un documento</option>
+                         <option value="1">Dni</option>
+                         <option value="2">Pasaporte</option>
+                         
+                
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cbx_modelo" class="form-label">Numero de documento</label>
+                        <input class="form-control">
+                           
+                       
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <br><br>
+            <div class="row g-4">
+
+                <div class="mb-3">
+                     <h1 class="mb-4">Detalle de Reclamación y Pedido del Consumidor</h1>
+                        <label class="form-label">Fecha del pedido</label>
+                        <input type="date" class="form-control">
+                    </div>
+
+
+                     <div class="mb-3">
+                        <label  class="form-label">Detalle</label>
+                        <textarea rows="4" class="form-control"> </textarea>
+                    </div>
+            </div>
+
+
+            <div class="form-check my-4">
+                <p>Ingresa los detalles de tu solicitud. También incluye información adicional que nos pueda servir
+                    para entender de mejor forma tu solicitud.</p>
+                <input class="form-check-input" type="checkbox" id="flexCheckDefault" required="">
+                <label class="form-check-label" for="flexCheckDefault">
+                    He leído y acepto los términos y condiciones de la política de privacidad vigente.
+                    <a href="">(Ver términos y condiciones)</a>
+                </label>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-warning">Enviar</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+   <footer>
+    <div class="footer-container">
+
+      <div class="footer-col">
+        <img src="img/logoMundoPan.jpg" alt="Logo MundoPan" class="logo-footer">
+      </div>
+
+      <div class="footer-col">
+        <h4>Envíos y garantías</h4>
+        <ul>
+          <li>¿Cómo comprar?</li>
+          <li>Envíos</li>
+          <li>Términos y condiciones de Garantía</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>¿Quiénes somos?</h4>
+        <ul>
+          <li>Nuestra tienda</li>
+          <li>Privacidad</li>
+          <li><a href="reclamos">Libro de Reclamaciones</a></li>
+          <li><a href="preguntasfrecuentes">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+<div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li>
+            <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" class="icono-whatsapp">
+            Asesor de ventas
+          </li>
+          <li>
+            <img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" class="icono-whatsapp">
+            Área de garantía
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; Tech Solve 2025
+    </div>  
+  </footer> 
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
