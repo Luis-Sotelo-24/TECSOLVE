@@ -9,54 +9,54 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        
+
         <style>
             * {
                 font-family: 'Inter', sans-serif;
             }
-            
+
             body {
                 background-color: #f6f6f6;
             }
-            
-header {
-    background-color: #E6EFFD;
-    color: black;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin-bottom: 0;
-}
 
-.footer-col a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    position: relative;
-    display: inline-block;
-}
+            header {
+                background-color: #E6EFFD;
+                color: black;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+            nav ul {
+                list-style: none;
+                display: flex;
+                gap: 20px;
+                margin-bottom: 0;
+            }
 
-.footer-col a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease;
-}
+            .footer-col a {
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                position: relative;
+                display: inline-block;
+            }
 
-.footer-col a:hover::after {
-    width: 100%;
-}
+            .footer-col a::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 0%;
+                height: 2px;
+                background-color: white;
+                transition: width 0.3s ease;
+            }
+
+            .footer-col a:hover::after {
+                width: 100%;
+            }
 
 
             footer {
@@ -105,29 +105,29 @@ nav ul {
                 padding-top: 10px;
             }
             .footer-col a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-block;
-    position: relative;
-}
-.footer-col a:hover {
-    transform: scale(1.05);
-}
-.footer-col a::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease;
-}
-.footer-col a:hover::after {
-    width: 100%;
-}
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                display: inline-block;
+                position: relative;
+            }
+            .footer-col a:hover {
+                transform: scale(1.05);
+            }
+            .footer-col a::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0%;
+                height: 2px;
+                background-color: white;
+                transition: width 0.3s ease;
+            }
+            .footer-col a:hover::after {
+                width: 100%;
+            }
             /* Estilos específicos */
             .card {
                 border-radius: 12px;
@@ -168,7 +168,9 @@ nav ul {
             .text-end.fw-bold {
                 color: #1C61E7;
             }
-  
+
+
+
         </style>
     </head>
     <body>
@@ -193,50 +195,58 @@ nav ul {
 
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    📋 Resumen de tu pedido
+                    📋 Pedidos
                 </div>
                 <div class="card-body">
-                    <p class="mb-3">✅ Tu pedido ha sido recibido y está en proceso. Aquí tienes el resumen:</p>
-                    <p class="mb-4">📦 Items en carrito: <strong><span th:text="${items.size()}"></span></strong></p>
-
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>🏷️ Nombre</th>
-                                <th>🔢 Cantidad</th>
-                                <th>💰 Precio</th>
-                                <th>💵 Total</th>
+                                <th>🏷️ Id</th>
+                                <th>🔢 Estado</th>
+                                <th>💰 Total</th>
+                                <th>💵 Detalle</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="item : ${items}">
-                                <td th:text="${item.nombre}">Nombre</td>
-                                <td th:text="${item.cantidad}">Cantidad</td>
-                                <td th:text="${#numbers.formatDecimal(item.precio, 1, 'POINT', 2, 'POINT')}">Precio</td>
-                                <td th:text="${#numbers.formatDecimal(item.total, 1, 'POINT', 2, 'POINT')}">Total</td>
+                            <tr th:each="pedido : ${listaPedidos}">
+                                <td th:text="${pedido.idPedido}">Id</td>
+                                <td th:text="${pedido.estado}">Estado</td>
+                                <td th:text="|S/. ${pedido.total}|">Total</td>
+                                <td><button class="btn btn-primary" th:onclick="verDetallePedido([[${pedido.idPedido}]])">Ver Detalle</button></td>
                             </tr>
                         </tbody>
                     </table>
-                    
-                    <div class="border-top pt-3">
-                        <p class="text-end fw-bold fs-4">
-                            💰 Total a pagar: <span th:text="|S/. ${#numbers.formatDecimal(total, 1, 'POINT', 2, 'POINT')}|"></span>
-                        </p>
-                    </div>                  
+             
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <button class="btn btn-success" onclick="window.print()">🖨️ Imprimir Recibo</button>
-                        <button class="btn btn-primary" disabled>📄 Descargar PDF</button>
+                        <a class="btn btn-primary" href="inicio">Volver</a>
                     </div>
-                    
-                    <div class="alert alert-info mt-4 mb-0" role="alert">
-                        <i class="bi bi-info-circle me-2"></i>
-                        📧 Recibirás un correo con los detalles y la fecha estimada de entrega.
+                    <!-- Ventana modal -->
+                    <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <p class="card-header bg-primary text-white">Detalle del pedido:</p>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="modalTablaItems">
+                                        <!-- Las filas se insertan por JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
- 
-       <footer>
+
+        <footer>
             <div class="footer-container">
 
                 <div class="footer-col">
@@ -245,15 +255,15 @@ nav ul {
 
                 <div class="footer-col">
                     <h4><li><a href="reclamos"> 📦Envíos y garantías</a></li></h4>
-                     <ul>
+                    <ul>
                         <li><a href="reclamos"> ❓¿Cómo comprar?</a></li>
                         <li><a href="reclamos">🚚 Envíos</a></li>
                         <li><a href="reclamos"> 📋Términos y condiciones de Garantía</a></li>
                     </ul>
                 </div>
 
-                 <div class="footer-col">
-                   <h4><li><a href="reclamos" >🏢 ¿Quiénes somos?</a></li></h4>
+                <div class="footer-col">
+                    <h4><li><a href="reclamos" >🏢 ¿Quiénes somos?</a></li></h4>
                     <ul>
                         <li><a href="reclamos"🏪>🏪 Nuestra tienda</a></li>
                         <li><a href="reclamos"🔒>🔒Privacidad</a></li>
@@ -266,24 +276,59 @@ nav ul {
                     <h4><li><a href="preguntasfrecuentes">📞 Contacto</a></li></h4>
                     <ul>
                         <li><a href="preguntasfrecuentes"><img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" class="icono-whatsapp">
-                            💬 Asesor de ventas</a>
-                            
+                                💬 Asesor de ventas</a>
+
                         </li>
                         <li><a href="preguntasfrecuentes"><img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" class="icono-whatsapp">
-                            🛠️ Área de garantía</a>
-                            
+                                🛠️ Área de garantía</a>
+
 
                         </li>
                     </ul>
                 </div>
             </div>
-       
 
-    <div class="footer-copy">
-        &copy; TechSolvers 2025 💻
-    </div>  
-</footer> 
+
+            <div class="footer-copy">
+                &copy; TechSolvers 2025 💻
+            </div>  
+        </footer> 
         <div style="height: 3px; background-color: white;"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+                            function verDetallePedido(id) {
+                                fetch(`/detallePedido/${id}`)
+                                        .then(response => {
+                                            if (!response.ok)
+                                                throw new Error('Error al obtener el pedido');
+                                            return response.json();
+                                        })
+                                        .then(data => {
+
+                                            const items = data;  // ← ya no uses data.items
+
+                                            const tablaItems = document.getElementById('modalTablaItems');
+                                            tablaItems.innerHTML = "";
+
+                                            items.forEach(item => {
+                                                const fila = document.createElement('tr');
+                                                fila.innerHTML = `
+            <td>${item.nombreProducto}</td>
+            <td>${item.cantidad}</td>
+            <td>S/ ${item.precioUnitario.toFixed(2)}</td>
+            <td>S/ ${item.cantidad*item.precioUnitario}</td>
+        `;
+                                                tablaItems.appendChild(fila);
+                                            });
+
+                                            // Mostrar modal
+                                            new bootstrap.Modal(document.getElementById('detalleModal')).show();
+                                        })
+                                        .catch(error => {
+                                            alert("Error al cargar el detalle del pedido.");
+                                            console.log(error);
+                                        });
+                            }
+        </script>
     </body>
 </html>

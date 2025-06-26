@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +7,18 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        
+
         <style>
             * {
                 font-family: 'Inter', sans-serif;
             }
-            
+
             body {
                 margin: 0;
                 padding: 0;
                 background-color: #f6f6f6;
             }
-            
+
             /* Sidebar styles */
             .sidebar {
                 width: 280px;
@@ -29,14 +29,14 @@
                 z-index: 1000;
                 transition: all 0.3s ease;
             }
-            
+
             .sidebar a {
                 color: #333;
                 text-decoration: none;
                 font-weight: 500;
                 transition: all 0.3s ease;
             }
-            
+
             .sidebar .nav-link {
                 color: #333;
                 border-radius: 8px;
@@ -44,94 +44,94 @@
                 padding: 12px 16px;
                 transition: all 0.3s ease;
             }
-            
+
             .sidebar .nav-link:hover {
                 background-color: rgba(28, 97, 231, 0.1);
                 color: #1C61E7;
             }
-            
+
             .sidebar .nav-link.active {
                 background-color: #1C61E7;
                 color: white;
             }
-            
+
             .sidebar .text-danger {
                 color: #dc3545 !important;
             }
-            
+
             .sidebar .text-danger:hover {
                 background-color: rgba(220, 53, 69, 0.1);
             }
-            
+
             /* Content styles */
             .content {
                 margin-left: 280px;
                 min-height: 100vh;
                 background-color: #f6f6f6;
             }
-            
+
             .header {
                 background-color: white;
                 border-bottom: 1px solid #dee2e6;
                 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            
+
             /* Buttons and cards */
             .btn-outline-success {
                 border-color: #28a745;
                 color: #28a745;
             }
-            
+
             .btn-outline-success:hover {
                 background-color: #28a745;
                 border-color: #28a745;
             }
-            
+
             .btn-outline-warning {
                 border-color: #ffc107;
                 color: #856404;
             }
-            
+
             .btn-outline-warning:hover {
                 background-color: #ffc107;
                 border-color: #ffc107;
                 color: #212529;
             }
-            
+
             .btn-outline-danger {
                 border-color: #dc3545;
                 color: #dc3545;
             }
-            
+
             .btn-outline-danger:hover {
                 background-color: #dc3545;
                 border-color: #dc3545;
             }
-            
+
             .btn-primary {
                 background-color: #1C61E7;
                 border-color: #1C61E7;
             }
-            
+
             .btn-primary:hover {
                 background-color: #154db8;
                 border-color: #154db8;
             }
-            
+
             .btn-secondary {
                 background-color: #6c757d;
                 border-color: #6c757d;
             }
-            
+
             /* Table styles */
             .table-dark {
                 background-color: #1C61E7;
             }
-            
+
             .table-striped > tbody > tr:nth-of-type(odd) > td {
                 background-color: rgba(28, 97, 231, 0.05);
             }
-            
+
             .table-container {
                 background-color: white;
                 border-radius: 12px;
@@ -139,39 +139,39 @@
                 overflow: hidden;
                 margin-bottom: 20px;
             }
-            
+
             .table-hover tbody tr:hover {
                 background-color: rgba(28, 97, 231, 0.1);
             }
-            
+
             .badge-pendiente {
                 background-color: #ffc107;
                 color: #212529;
             }
-            
+
             .badge-enviado {
                 background-color: #28a745;
             }
-            
+
             .badge-proceso {
                 background-color: #17a2b8;
             }
-            
+
             h2 {
                 color: #1C61E7;
                 font-weight: 700;
             }
-            
+
             /* Responsive */
             @media (max-width: 768px) {
                 .sidebar {
                     transform: translateX(-100%);
                 }
-                
+
                 .sidebar.show {
                     transform: translateX(0);
                 }
-                
+
                 .content {
                     margin-left: 0;
                 }
@@ -215,17 +215,6 @@
 
                 <!-- Botones de acción -->
                 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
-                    <div class="d-flex flex-wrap gap-3">
-                        <button type="button" class="btn btn-outline-success">
-                            <i class="fas fa-plus"></i>  Agregar
-                        </button>
-                        <button type="button" class="btn btn-outline-warning">
-                            <i class="fas fa-edit"></i>  Editar
-                        </button>
-                        <button type="button" class="btn btn-outline-danger">
-                            <i class="fas fa-trash"></i>  Borrar
-                        </button>
-                    </div>
                     <a href="admin" class="btn btn-secondary p-3 mt-3 mt-md-0">
                         <i class="fas fa-home"></i>  Volver al Menú Principal
                     </a>
@@ -234,87 +223,106 @@
                 <!-- Tabla de pedidos -->
                 <div class="table-container">
                     <div class="table-responsive">
-                        <table class="table table-sm table-striped table-hover align-middle text-center mb-0">
-                            <thead class="table-dark">
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
                                     <th>🆔 ID</th>
-                                    <th>👤 Cliente</th>
-                                    <th>📅 Fecha</th>
-                                    <th>📱 Pedido</th>
-                                    <th>🔢 Cantidad</th>
-                                    <th>📊 Estado</th>
+                                    <th>👤 Nombre</th>
+                                    <th>👥 Apellidos</th>
+                                    <th>🏠 Dirección</th>
+                                    <th>📞 Teléfono</th>
+                                    <th>🆔 DNI</th>
+                                    <th>📱 Estado</th>
+                                    <th>💰 Total</th>
+                                    <th>🔢 Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="fw-bold">101</td>
-                                    <td>Juan Pérez</td>
-                                    <td>2024-10-12</td>
-                                    <td class="fw-semibold text-primary">📱 Samsung S22</td>
-                                    <td><span class="badge bg-info">2</span></td>
-                                    <td><span class="badge badge-pendiente">⏳ Pendiente</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">102</td>
-                                    <td>Ana García</td>
-                                    <td>2024-11-03</td>
-                                    <td class="fw-semibold text-primary">📺 TV Smart</td>
-                                    <td><span class="badge bg-info">1</span></td>
-                                    <td><span class="badge badge-enviado">✅ Enviado</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="fw-bold">103</td>
-                                    <td>Luis Torres</td>
-                                    <td>2025-01-22</td>
-                                    <td class="fw-semibold text-primary">📱 iPhone 11</td>
-                                    <td><span class="badge bg-info">1</span></td>
-                                    <td><span class="badge badge-proceso">🔄 En proceso</span></td>
+                                <tr th:each="pedido : ${listaPedidosFull}">
+                                    <td th:text="${pedido.idPedido}">Id</td>
+                                    <td th:text="${pedido.cliente.nombreCli}">Nombre</td>
+                                    <td th:text="${pedido.cliente.apellidosCli}">Apellido</td>
+                                    <td th:text="${pedido.cliente.direccion}">Direccion</td>
+                                    <td th:text="${pedido.cliente.telefono}">Telefono</td>
+                                    <td th:text="${pedido.cliente.dni}">Dni</td>
+                                    <td th:text="${pedido.estado}">Estado</td>
+                                    <td th:text="|S/. ${pedido.total}|">Total</td>
+                                    <td>
+                                        <button class="btn btn-primary" th:onclick="verDetallePedido([[${pedido.idPedido}]])">Ver</button>
+                                        <a
+                                            th:href="@{/adminventas/eliminar/{id}(id=${pedido.idPedido})}"
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('¿Cancelar este pedido?')"
+                                            >
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <button
+                                            class="btn btn-sm btn-warning me-1"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalEditar"
+                                            th:attr="data-idPedido=${pedido.idPedido},
+                                            data-nombre=${pedido.cliente.nombreCli},
+                                            data-apellido=${pedido.cliente.apellidosCli},
+                                            data-categoria=${pedido.estado}"
+                                            >
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-                <!-- Sección de detalle -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-primary">📋 Detalle del Pedido</h4>
-                            <button class="btn btn-primary">
-                                <i class="fas fa-list"></i>  Ver Detalle Completo
-                            </button>
+                <!-- Ventana modal -->
+                <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <p class="card-header bg-primary text-white">Detalle del pedido:</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalTablaItems">
+                                    <!-- Las filas se insertan por JS -->
+                                </tbody>
+                            </table>
                         </div>
-                        
-                        <div class="table-container">
-                            <div class="table-responsive">
-                                <table class="table table-hover mb-0">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>🆔 ID</th>
-                                            <th>👤 Nombre</th>
-                                            <th>👥 Apellidos</th>
-                                            <th>🏠 Dirección</th>
-                                            <th>📞 Teléfono</th>
-                                            <th>🆔 DNI</th>
-                                            <th>📱 Pedido</th>
-                                            <th>🔢 Cantidad</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="fw-bold text-primary">101</td>
-                                            <td>Juan</td>
-                                            <td>Pérez Gómez</td>
-                                            <td>📍 Av. Olivos</td>
-                                            <td>📱 987654321</td>
-                                            <td>🪪 23541234</td>
-                                            <td class="fw-semibold text-success">📱 Samsung S22</td>
-                                            <td><span class="badge bg-primary">2</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    </div>
+                </div>
+                <!-- Modal Editar -->
+                <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="post" action="/adminventas/guardar" class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">✏️ Editar Pedido</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
-                        </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="idPedido" id="edit-idPedido" />
+                                <input name="nombre" id="edit-nombre" class="form-control mb-2" placeholder="🏷️ Nombre" required />
+                                <input name="apellido" id="edit-apellido" class="form-control mb-2" placeholder="🏷️ Apellido" required />
+                                <select class="form-select" id="edit-estado" name="estado" required>
+                                    <option selected disabled>Seleccione una estado</option>
+                                    <option value="Pendiente">pendiente</option>
+                                    <option value="Cerrado">cerrado</option>
+                                    <option value="Cancelado">cancelado</option>
+                                    <option value="Entregado">entregado</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>  Actualizar
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fas fa-times"></i>  Cancelar
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -322,10 +330,59 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            document.getElementById('toggleSidebar').addEventListener('click', () => {
-                document.querySelector('.sidebar').classList.toggle('d-none');
-                document.querySelector('.content').classList.toggle('collapsed');
-            });
+                                                document.getElementById('toggleSidebar').addEventListener('click', () => {
+                                                    document.querySelector('.sidebar').classList.toggle('d-none');
+                                                    document.querySelector('.content').classList.toggle('collapsed');
+                                                });
+
+
+                                                function verDetallePedido(id) {
+                                                    fetch(`/detallePedido/${id}`)
+                                                            .then(response => {
+                                                                if (!response.ok)
+                                                                    throw new Error('Error al obtener el pedido');
+                                                                return response.json();
+                                                            })
+                                                            .then(data => {
+
+                                                                const items = data;  // ← ya no uses data.items
+
+                                                                const tablaItems = document.getElementById('modalTablaItems');
+                                                                tablaItems.innerHTML = "";
+
+                                                                items.forEach(item => {
+                                                                    const fila = document.createElement('tr');
+                                                                    fila.innerHTML = `
+            <td>${item.nombreProducto}</td>
+            <td>${item.cantidad}</td>
+            <td>S/ ${item.precioUnitario.toFixed(2)}</td>
+            <td>S/ ${item.cantidad * item.precioUnitario}</td>
+        `;
+                                                                    tablaItems.appendChild(fila);
+                                                                });
+
+                                                                // Mostrar modal
+                                                                new bootstrap.Modal(document.getElementById('detalleModal')).show();
+                                                            })
+                                                            .catch(error => {
+                                                                alert("Error al cargar el detalle del pedido.");
+                                                                console.log(error);
+                                                            });
+                                                }
+
+                                                const modalEditar = document.getElementById('modalEditar');
+                                                modalEditar?.addEventListener('show.bs.modal', event => {
+                                                    const button = event.relatedTarget;
+                                                    const idPedido = button.getAttribute('data-idPedido');
+                                                    const nombre = button.getAttribute('data-nombre');
+                                                    const apellido = button.getAttribute('data-apellido');
+                                                    const estado = button.getAttribute('data-estado');
+
+                                                    document.getElementById('edit-idPedido').value = idPedido;
+                                                    document.getElementById('edit-nombre').value = nombre;
+                                                    document.getElementById('edit-apellido').value = apellido;
+                                                    document.getElementById('edit-estado').value = estado;
+                                                 });
         </script>
     </body>
 </html>

@@ -1,5 +1,6 @@
 package com.Tecnologia.dto;
 
+import com.Tecnologia.Modelo.Pedido;
 import java.math.BigDecimal;
 
 public class PedidoItemDTO {
@@ -10,6 +11,12 @@ public class PedidoItemDTO {
     private Integer cantidad;
     private BigDecimal precioUnitario;
     private BigDecimal total;
+
+    public PedidoItemDTO(String nombre, Integer cantidad, BigDecimal precioUnitario) {
+        this.nombreProducto=nombre;
+        this.cantidad=cantidad;
+        this.precioUnitario=precioUnitario;
+    }
 
     public Long getId() {
         return id;
