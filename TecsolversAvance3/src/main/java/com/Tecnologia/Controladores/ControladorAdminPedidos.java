@@ -1,5 +1,11 @@
 package com.Tecnologia.Controladores;
 
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.Tecnologia.Modelo.Clientes;
 import com.Tecnologia.Modelo.Pedido;
 import com.Tecnologia.Repositorio.ClientesRepositorio;
@@ -68,5 +74,44 @@ public class ControladorAdminPedidos {
     public String eliminarPedido(@PathVariable Long id) {
         pedidoRepository.deleteById(id);
         return "redirect:/adminventas";
+    }
+
+    @GetMapping("/exportarPedidosExcel")
+    public void exportarPedidosExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=pedidos.xlsx");
+
+        List<Pedido> pedidos = pedidoRepository.findAll();
+
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Pedidos");
+
+        // Cabecera
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(1).setCellValue("Cliente");
+        headerRow.createCell(2).setCellValue("Fecha");
+        headerRow.createCell(3).setCellValue("Estado");
+        headerRow.createCell(4).setCellValue("Total");
+
+        // Datos
+        int rowNum = 1;
+        for (Pedido pedido : pedidos) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(pedido.getIdPedido().toString());
+            row.createCell(1).setCellValue(pedido.getCliente().getNombreCli()); // o getNombreCompleto()
+            row.createCell(2).setCellValue(pedido.getFecha().toString());
+            row.createCell(3).setCellValue(pedido.getEstado());
+            row.createCell(4).setCellValue(pedido.getTotal().doubleValue());
+        }
+
+        // Ajustar columnas
+        for (int i = 0; i < 5; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        // Escribir al response
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 }
