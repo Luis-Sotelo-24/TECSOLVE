@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pedidos - TechSolvers Admin</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <style>
+            * {
+                font-family: 'Inter', sans-serif;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f6f6f6;
+            }
+
+            /* Sidebar styles */
+            .sidebar {
+                width: 280px;
+                height: 100vh;
+                background-color: #E6EFFD;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar a {
+                color: #333;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar .nav-link {
+                color: #333;
+                border-radius: 8px;
+                margin-bottom: 5px;
+                padding: 12px 16px;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar .nav-link:hover {
+                background-color: rgba(28, 97, 231, 0.1);
+                color: #1C61E7;
+            }
+
+            .sidebar .nav-link.active {
+                background-color: #1C61E7;
+                color: white;
+            }
+
+            .sidebar .text-danger {
+                color: #dc3545 !important;
+            }
+
+            .sidebar .text-danger:hover {
+                background-color: rgba(220, 53, 69, 0.1);
+            }
+
+            /* Content styles */
+            .content {
+                margin-left: 280px;
+                min-height: 100vh;
+                background-color: #f6f6f6;
+            }
+
+            .header {
+                background-color: white;
+                border-bottom: 1px solid #dee2e6;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            /* Buttons and cards */
+            .btn-outline-success {
+                border-color: #28a745;
+                color: #28a745;
+            }
+
+            .btn-outline-success:hover {
+                background-color: #28a745;
+                border-color: #28a745;
+            }
+
+            .btn-outline-warning {
+                border-color: #ffc107;
+                color: #856404;
+            }
+
+            .btn-outline-warning:hover {
+                background-color: #ffc107;
+                border-color: #ffc107;
+                color: #212529;
+            }
+
+            .btn-outline-danger {
+                border-color: #dc3545;
+                color: #dc3545;
+            }
+
+            .btn-outline-danger:hover {
+                background-color: #dc3545;
+                border-color: #dc3545;
+            }
+
+            .btn-primary {
+                background-color: #1C61E7;
+                border-color: #1C61E7;
+            }
+
+            .btn-primary:hover {
+                background-color: #154db8;
+                border-color: #154db8;
+            }
+
+            .btn-secondary {
+                background-color: #6c757d;
+                border-color: #6c757d;
+            }
+
+            /* Table styles */
+            .table-dark {
+                background-color: #1C61E7;
+            }
+
+            .table-striped > tbody > tr:nth-of-type(odd) > td {
+                background-color: rgba(28, 97, 231, 0.05);
+            }
+
+            .table-container {
+                background-color: white;
+                border-radius: 12px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                margin-bottom: 20px;
+            }
+
+            .table-hover tbody tr:hover {
+                background-color: rgba(28, 97, 231, 0.1);
+            }
+
+            .badge-pendiente {
+                background-color: #ffc107;
+                color: #212529;
+            }
+
+            .badge-enviado {
+                background-color: #28a745;
+            }
+
+            .badge-proceso {
+                background-color: #17a2b8;
+            }
+
+            h2 {
+                color: #1C61E7;
+                font-weight: 700;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .sidebar {
+                    transform: translateX(-100%);
+                }
+
+                .sidebar.show {
+                    transform: translateX(0);
+                }
+
+                .content {
+                    margin-left: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Sidebar -->
+        <div class="sidebar position-fixed d-flex flex-column p-3">
+            <a href="/admin" class="d-flex align-items-center mb-4 text-decoration-none">
+                <i class="fas fa-microchip fs-3 me-2" style="color: #1C61E7;"></i>
+                <span class="fs-4 fw-semibold" style="color: #1C61E7;"> TechSolvers</span>
+            </a>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li><a href="/admin" class="nav-link"><i class="fas fa-home me-2"></i> Inicio</a></li>
+                <li><a href="/adminproductos" class="nav-link"><i class="fas fa-box-open me-2"></i> Productos</a></li>
+                <li><a href="/adminventas" class="nav-link active"><i class="fas fa-shopping-cart me-2"></i> Pedidos</a></li>
+                <li><a href="/adminreclamos" class="nav-link"><i class="fas fa-exclamation-triangle me-2"></i> Reclamos</a></li>
+                <li><a href="/adminclientes" class="nav-link"><i class="fas fa-users me-2"></i> Clientes</a></li>
+            </ul>
+            <hr />
+            <div class="mt-auto">
+                <a class="nav-link text-danger"><i class="fas fa-sign-out-alt me-2"></i> Cerrar sesión</a>
+            </div>
+        </div>
+
+        <!-- Page content -->
+        <div class="content">
+            <nav class="header navbar navbar-expand bg-white px-4 align-items-center">
+                <button class="btn btn-sm btn-outline-secondary me-3" id="toggleSidebar"><i class="fas fa-bars"></i></button>
+                <div class="ms-auto d-flex align-items-center">
+                    <i class="fas fa-user-circle fa-2x text-secondary me-2"></i>
+                    <span th:text="'👋 Bienvenido, ' + ${session.nombreUsuario}">👋 Bienvenido, Admin</span>
+                    <a href="/logout" class="btn btn-outline-danger btn-sm ms-3">🚪 Cerrar sesión</a>
+                </div>
+            </nav>
+
+            <div class="container-fluid py-4">
+                <h2 class="fw-bold mb-4">🛒 Pedidos de Clientes</h2>
+
+                <!-- Botones de acción -->
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+                    <a href="admin" class="btn btn-secondary p-3 mt-3 mt-md-0">
+                        <i class="fas fa-home"></i>  Volver al Menú Principal
+                    </a>
+                </div>
+
+                <!-- Tabla de pedidos -->
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>🆔 ID</th>
+                                    <th>👤 Nombre</th>
+                                    <th>👥 Apellidos</th>
+                                    <th>🏠 Dirección</th>
+                                    <th>📞 Teléfono</th>
+                                    <th>🆔 DNI</th>
+                                    <th>📱 Estado</th>
+                                    <th>💰 Total</th>
+                                    <th>🔢 Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="pedido : ${listaPedidosFull}">
+                                    <td th:text="${pedido.idPedido}">Id</td>
+                                    <td th:text="${pedido.cliente.nombreCli}">Nombre</td>
+                                    <td th:text="${pedido.cliente.apellidosCli}">Apellido</td>
+                                    <td th:text="${pedido.cliente.direccion}">Direccion</td>
+                                    <td th:text="${pedido.cliente.telefono}">Telefono</td>
+                                    <td th:text="${pedido.cliente.dni}">Dni</td>
+                                    <td th:text="${pedido.estado}">Estado</td>
+                                    <td th:text="|S/. ${pedido.total}|">Total</td>
+                                    <td>
+                                        <button class="btn btn-primary" th:onclick="verDetallePedido([[${pedido.idPedido}]])">Ver</button>
+                                        <a
+                                            th:href="@{/adminventas/eliminar/{id}(id=${pedido.idPedido})}"
+                                            class="btn btn-sm btn-danger"
+                                            onclick="return confirm('¿Cancelar este pedido?')"
+                                            >
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <button
+                                            class="btn btn-sm btn-warning me-1"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalEditar"
+                                            th:attr="data-idPedido=${pedido.idPedido},
+                                            data-nombre=${pedido.cliente.nombreCli},
+                                            data-apellido=${pedido.cliente.apellidosCli},
+                                            data-categoria=${pedido.estado}"
+                                            >
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Ventana modal -->
+                <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <p class="card-header bg-primary text-white">Detalle del pedido:</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="modalTablaItems">
+                                    <!-- Las filas se insertan por JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Editar -->
+                <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <form method="post" action="/adminventas/guardar" class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">✏️ Editar Pedido</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="idPedido" id="edit-idPedido" />
+                                <input name="nombre" id="edit-nombre" class="form-control mb-2" placeholder="🏷️ Nombre" required />
+                                <input name="apellido" id="edit-apellido" class="form-control mb-2" placeholder="🏷️ Apellido" required />
+                                <select class="form-select" id="edit-estado" name="estado" required>
+                                    <option selected disabled>Seleccione una estado</option>
+                                    <option value="Pendiente">pendiente</option>
+                                    <option value="Cerrado">cerrado</option>
+                                    <option value="Cancelado">cancelado</option>
+                                    <option value="Entregado">entregado</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>  Actualizar
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fas fa-times"></i>  Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+                                                document.getElementById('toggleSidebar').addEventListener('click', () => {
+                                                    document.querySelector('.sidebar').classList.toggle('d-none');
+                                                    document.querySelector('.content').classList.toggle('collapsed');
+                                                });
+
+
+                                                function verDetallePedido(id) {
+                                                    fetch(`/detallePedido/${id}`)
+                                                            .then(response => {
+                                                                if (!response.ok)
+                                                                    throw new Error('Error al obtener el pedido');
+                                                                return response.json();
+                                                            })
+                                                            .then(data => {
+
+                                                                const items = data;  // ← ya no uses data.items
+
+                                                                const tablaItems = document.getElementById('modalTablaItems');
+                                                                tablaItems.innerHTML = "";
+
+                                                                items.forEach(item => {
+                                                                    const fila = document.createElement('tr');
+                                                                    fila.innerHTML = `
+            <td>${item.nombreProducto}</td>
+            <td>${item.cantidad}</td>
+            <td>S/ ${item.precioUnitario.toFixed(2)}</td>
+            <td>S/ ${item.cantidad * item.precioUnitario}</td>
+        `;
+                                                                    tablaItems.appendChild(fila);
+                                                                });
+
+                                                                // Mostrar modal
+                                                                new bootstrap.Modal(document.getElementById('detalleModal')).show();
+                                                            })
+                                                            .catch(error => {
+                                                                alert("Error al cargar el detalle del pedido.");
+                                                                console.log(error);
+                                                            });
+                                                }
+
+                                                const modalEditar = document.getElementById('modalEditar');
+                                                modalEditar?.addEventListener('show.bs.modal', event => {
+                                                    const button = event.relatedTarget;
+                                                    const idPedido = button.getAttribute('data-idPedido');
+                                                    const nombre = button.getAttribute('data-nombre');
+                                                    const apellido = button.getAttribute('data-apellido');
+                                                    const estado = button.getAttribute('data-estado');
+
+                                                    document.getElementById('edit-idPedido').value = idPedido;
+                                                    document.getElementById('edit-nombre').value = nombre;
+                                                    document.getElementById('edit-apellido').value = apellido;
+                                                    document.getElementById('edit-estado').value = estado;
+                                                 });
+        </script>
+    </body>
+</html>
