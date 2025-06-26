@@ -1,5 +1,6 @@
 package com.Tecnologia.Modelo;
 //Pedido General
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +16,12 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_pedido;
+    @Column(name = "id_pedido")
+    private Long idPedido;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cli", nullable = false)
+    @JsonIgnore
     private Clientes cliente;
 
     @Column(nullable = false)
