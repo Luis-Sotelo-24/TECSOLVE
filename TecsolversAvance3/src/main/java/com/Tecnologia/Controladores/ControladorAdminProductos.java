@@ -2,13 +2,19 @@ package com.Tecnologia.Controladores;
 
 import com.Tecnologia.Modelo.Producto;
 import com.Tecnologia.Servicios.ProductoServicio;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.validation.BindingResult;
 
 @Controller
@@ -125,5 +131,46 @@ public class ControladorAdminProductos {
         List<Producto> lista = productoServicio.getByCategoria("Computadoras");
         modelo.addAttribute("listaproductos", lista);
         return "ListaComputadoras";
+    }
+    
+    @GetMapping("/exportarProductosExcel")
+    public void exportarProductosExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=productos.xlsx");
+
+        List<Producto> producto = productoServicio.get();
+
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Pedidos");
+
+        // Cabecera
+        Row headerRow = sheet.createRow(0);
+        headerRow.createCell(0).setCellValue("ID");
+        headerRow.createCell(1).setCellValue("Nombre");
+        headerRow.createCell(2).setCellValue("Descripcion");
+        headerRow.createCell(3).setCellValue("Precio");
+        headerRow.createCell(4).setCellValue("Stock");
+        headerRow.createCell(5).setCellValue("Categoria");
+
+        // Datos
+        int rowNum = 1;
+        for (Producto productos : producto) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(productos.getId_prod().toString());
+            row.createCell(1).setCellValue(productos.getNombre());
+            row.createCell(2).setCellValue(productos.getDescripcion());
+            row.createCell(3).setCellValue(productos.getPrecio().toString());
+            row.createCell(4).setCellValue(productos.getStock().toString());
+            row.createCell(5).setCellValue(productos.getCategoria());
+        }
+
+        // Ajustar columnas
+        for (int i = 0; i < 6; i++) {
+            sheet.autoSizeColumn(i);
+        }
+
+        // Escribir al response
+        workbook.write(response.getOutputStream());
+        workbook.close();
     }
 }
