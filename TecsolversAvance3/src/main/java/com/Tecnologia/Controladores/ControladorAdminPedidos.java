@@ -46,7 +46,7 @@ public class ControladorAdminPedidos {
     }
 
     @PostMapping("/guardar")
-    public String guardarProducto(@ModelAttribute Pedido pedidoForm, BindingResult result, Model model) {
+    public String guardarPedidos(@ModelAttribute Pedido pedidoForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("pedido", pedidoForm);
             model.addAttribute("clientes", clienteRepository.findAll());
@@ -62,12 +62,6 @@ public class ControladorAdminPedidos {
         pedidoRepository.save(pedidoOriginal);
 
         return "redirect:/adminventas";
-    }
-
-    @GetMapping("/editar/{id}")
-    public String editarProducto(@PathVariable Long id, Model model) {
-        model.addAttribute("pedido", pedidoRepository.findById(id));
-        return "adminproductos_form";
     }
 
     @GetMapping("/eliminar/{id}")

@@ -9,7 +9,6 @@ import com.Tecnologia.Modelo.Producto;
 import com.Tecnologia.Repositorio.PedidoItemRepositorio;
 import com.Tecnologia.Repositorio.PedidoRepositorio;
 import com.Tecnologia.dao.ProductoRepositorio;
-import com.Tecnologia.dto.PedidoDTO;
 import com.Tecnologia.dto.PedidoItemDTO;
 import jakarta.servlet.http.HttpSession;
 import java.math.BigDecimal;
