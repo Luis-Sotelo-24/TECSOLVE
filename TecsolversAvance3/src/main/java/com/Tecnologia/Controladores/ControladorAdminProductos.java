@@ -89,7 +89,7 @@ public class ControladorAdminProductos {
     @GetMapping("/adminproductos/editar/{id}")
     public String editarProducto(@PathVariable Long id, Model model) {
         model.addAttribute("producto", productoServicio.get(id));
-        return "adminproductos_form";
+        return "adminproductos";
     }
 
     @GetMapping("/adminproductos/eliminar/{id}")
@@ -99,35 +99,35 @@ public class ControladorAdminProductos {
     }
 
     @GetMapping("/listaaudifonos")
-    public String ListaKekes(Model modelo) {
+    public String ListaAudifonos(Model modelo) {
         List<Producto> lista = productoServicio.getByCategoria("Audifonos");
         modelo.addAttribute("listaproductos", lista);
         return "ListaAudifonos";
     }
 
     @GetMapping("/listasmartphones")
-    public String ListaPanes(Model modelo) {
+    public String ListaSmartphones(Model modelo) {
         List<Producto> lista = productoServicio.getByCategoria("Smartphones");
         modelo.addAttribute("listaproductos", lista);
         return "ListaSmartphones";
     }
 
     @GetMapping("/listatv")
-    public String ListaTortas(Model modelo) {
+    public String ListaTv(Model modelo) {
         List<Producto> lista = productoServicio.getByCategoria("Tv");
         modelo.addAttribute("listaproductos", lista);
         return "ListaTv";
     }
 
     @GetMapping("/listasmartwatch")
-    public String ListaBocaditos(Model modelo) {
+    public String ListaSmartwatch(Model modelo) {
         List<Producto> lista = productoServicio.getByCategoria("Smart Watch");
         modelo.addAttribute("listaproductos", lista);
         return "ListaSmartWatch";
     }
 
     @GetMapping("/listacomputadoras")
-    public String ListaSalados(Model modelo) {
+    public String ListaComputadoras(Model modelo) {
         List<Producto> lista = productoServicio.getByCategoria("Computadoras");
         modelo.addAttribute("listaproductos", lista);
         return "ListaComputadoras";
