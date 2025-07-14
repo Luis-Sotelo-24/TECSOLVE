@@ -158,6 +158,11 @@
             background-color: #E6EFFD;
             color: #1C61E7;
         }
+        .disabled-card {
+            pointer-events: none; /* desactiva clicks */
+            opacity: 0.6;         /* se ve borroso */
+            filter: grayscale(100%);
+        }
     </style>
 
     <body>
@@ -200,27 +205,28 @@
                         <p class="text-success small">🏠 Inicio / 💻 Computadoras</p>
                         <h2 class="mb-2 text-success">💻 Computadoras</h2>
 
-                        <div class="row g-4">
-                            <!-- Producto -->
+                        <div class="row g-4" th:if="${listaproductos != null}">
                             <div class="col-md-3" th:each="producto : ${listaproductos}">
-                                <div class="card h-100">
-                                    <div class="card-img-container">
-                                        <img th:src="${producto.imagen}" class="card-img-top" alt="Imagen de producto">
-                                    </div>
-                                    <div class="card-body d-flex flex-column justify-content-between">
-                                        <h5 class="card-title" th:text="${producto.nombre}">Nombre Producto</h5>
-                                        <p class="card-text" th:text="'S/' + ${producto.precio}">Precio</p>
+                                <div class="card" th:classappend="${producto.stock == 0} ? ' disabled-card' : ''">
+                                    <img th:src="@{${producto.imagen}}" class="card-img-top" alt="..." th:style="${producto.stock == 0} ? 'filter: grayscale(100%) opacity(0.5);' : ''">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${producto.nombre}"></h5>
+                                        <p class="card-text">Precio: S/. <span th:text="${producto.precio}"></span></p>
+                                        <p class="card-text">Stock: <span th:text="${producto.stock}"></span></p>
                                         <form th:action="@{/agregarCarrito}" method="get">
                                             <input type="hidden" th:name="id" th:value="${producto.id_prod}" />
                                             <input type="hidden" th:name="nombre" th:value="${producto.nombre}" />
                                             <input type="hidden" th:name="descripcion" th:value="${producto.descripcion}" />
                                             <input type="hidden" th:name="precio" th:value="${producto.precio}" />
-                                            <button type="submit" class="btn btn-primary w-100">🛒 Agregar al carrito</button>
+                                            <button class="btn btn-primary"
+                                                    th:disabled="${producto.stock == 0}"
+                                                    th:text="${producto.stock == 0} ? 'Agotado' : 'Agregar al carrito'">
+                                            </button>
                                         </form>
+
                                     </div>
                                 </div>
                             </div>
-                            <!--Fin de productos -->
                         </div>
                     </section>
                 </div>

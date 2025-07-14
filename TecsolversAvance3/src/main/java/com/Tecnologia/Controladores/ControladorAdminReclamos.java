@@ -64,6 +64,6 @@ public class ControladorAdminReclamos {
     @GetMapping("/editar/{id}")
     public String editarProducto(@PathVariable Long id, Model model) {
         model.addAttribute("reclamo", reclamoRepositorio.findById(id));
-        return "adminproductos_form";
+        return "AdminReclamos";
     }
 }

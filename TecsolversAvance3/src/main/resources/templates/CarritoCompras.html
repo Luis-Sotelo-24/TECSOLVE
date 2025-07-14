@@ -13,11 +13,11 @@
             * {
                 font-family: 'Inter', sans-serif;
             }
-            
+
             body {
                 background-color: #f6f6f6;
             }
-            
+
             header {
                 background-color: #E6EFFD;
                 color: black;
@@ -85,30 +85,30 @@
             }
 
             .footer-col a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    display: inline-block;
-    position: relative;
-}
-.footer-col a:hover {
-    transform: scale(1.05);
-}
-.footer-col a::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s ease;
-}
-.footer-col a:hover::after {
-    width: 100%;
-}
-            
+                color: white;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                display: inline-block;
+                position: relative;
+            }
+            .footer-col a:hover {
+                transform: scale(1.05);
+            }
+            .footer-col a::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 0%;
+                height: 2px;
+                background-color: white;
+                transition: width 0.3s ease;
+            }
+            .footer-col a:hover::after {
+                width: 100%;
+            }
+
             /* Estilos del carrito */
             .card {
                 border-radius: 10px;
@@ -213,7 +213,7 @@
             </div>
         </div>
 
-  <footer>
+        <footer>
             <div class="footer-container">
 
                 <div class="footer-col">
@@ -222,15 +222,15 @@
 
                 <div class="footer-col">
                     <h4><li><a href="reclamos"> 📦Envíos y garantías</a></li></h4>
-                     <ul>
+                    <ul>
                         <li><a href="reclamos"> ❓¿Cómo comprar?</a></li>
                         <li><a href="reclamos">🚚 Envíos</a></li>
                         <li><a href="reclamos"> 📋Términos y condiciones de Garantía</a></li>
                     </ul>
                 </div>
 
-                 <div class="footer-col">
-                   <h4><li><a href="reclamos" >🏢 ¿Quiénes somos?</a></li></h4>
+                <div class="footer-col">
+                    <h4><li><a href="reclamos" >🏢 ¿Quiénes somos?</a></li></h4>
                     <ul>
                         <li><a href="reclamos"🏪>🏪 Nuestra tienda</a></li>
                         <li><a href="reclamos"🔒>🔒Privacidad</a></li>
@@ -243,24 +243,60 @@
                     <h4><li><a href="preguntasfrecuentes">📞 Contacto</a></li></h4>
                     <ul>
                         <li><a href="preguntasfrecuentes"><img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" class="icono-whatsapp">
-                            💬 Asesor de ventas</a>
-                            
+                                💬 Asesor de ventas</a>
+
                         </li>
                         <li><a href="preguntasfrecuentes"><img src="https://img.icons8.com/?size=100&id=16713&format=png&color=000000" alt="WhatsApp" class="icono-whatsapp">
-                            🛠️ Área de garantía</a>
-                            
+                                🛠️ Área de garantía</a>
+
 
                         </li>
                     </ul>
                 </div>
             </div>
-       
 
-    <div class="footer-copy">
-        &copy; TechSolvers 2025 💻
-    </div>  
-</footer>      
-        
+
+            <div class="footer-copy">
+                &copy; TechSolvers 2025 💻
+            </div>  
+        </footer>      
+        <!-- Input hidden para capturar el mensaje de error -->
+        <input type="hidden" id="errorHidden" th:value="${error}">
+
+        <!-- Modal ERROR DE STOCK-->
+        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p th:text="${error}"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="continuarBtn" class="btn btn-primary">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const error = document.getElementById('errorHidden').value;
+                if (error && error !== '') {
+                    var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                    myModal.show();
+
+                    document.getElementById('continuarBtn').addEventListener('click', function () {
+                        window.location.href = '/carritocompras';
+                    });
+
+                    document.getElementById('errorModal').addEventListener('hidden.bs.modal', function () {
+                        window.location.href = '/carritocompras';
+                    });
+                }
+            });
+        </script>
     </body>
 </html>

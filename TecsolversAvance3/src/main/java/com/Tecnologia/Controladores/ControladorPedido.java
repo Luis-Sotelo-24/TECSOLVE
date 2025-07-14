@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ControladorPedido {
@@ -36,7 +37,7 @@ public class ControladorPedido {
     private ProductoRepositorio productoRepository;
 
     @PostMapping("/pedido")
-    public String procesarPedido(HttpSession session, Model model) {
+    public String procesarPedido(HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         Carrito carrito = (Carrito) session.getAttribute("carrito");
         Clientes cliente = (Clientes) session.getAttribute("cliente");
 
@@ -56,6 +57,12 @@ public class ControladorPedido {
         for (Item item : carrito.getItems()) {
             Producto producto = productoRepository.findById(item.getId()).orElseThrow();
 
+            // Verificar stock antes de procesar
+            if (producto.getStock() < item.getCantidad()) {
+                redirectAttributes.addFlashAttribute("error", "No hay suficiente stock para el producto: " + producto.getNombre() + ". Stock disponible: " + producto.getStock());
+                return "redirect:/carritocompras";
+            }
+
             PedidoItem pedidoItem = new PedidoItem();
             pedidoItem.setPedido(pedido);
             pedidoItem.setProducto(producto);
@@ -64,6 +71,8 @@ public class ControladorPedido {
             BigDecimal totalItem = BigDecimal.valueOf(producto.getPrecio())
                     .multiply(BigDecimal.valueOf(item.getCantidad()));
             pedidoItem.setTotal(totalItem);
+
+            producto.setStock(producto.getStock() - pedidoItem.getCantidad());
 
             items.add(pedidoItem);
             totalPedido = totalPedido.add(totalItem);
@@ -97,7 +106,6 @@ public class ControladorPedido {
         }
     }
 
-
     @GetMapping("/detallePedido/{id}")
     @ResponseBody
     public List<PedidoItemDTO> obtenerDetallePedido(@PathVariable Long id) {
@@ -107,7 +115,6 @@ public class ControladorPedido {
                 item.getProducto().getNombre(), // Ajusta según tu modelo
                 item.getCantidad(),
                 item.getPrecioUnitario()
-                
         ))
                 .toList();
 
