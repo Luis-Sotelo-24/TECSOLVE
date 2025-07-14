@@ -1,15 +1,39 @@
-# Forzar detección de Java como lenguaje principal
+# ==============================================
+# Configuración de GitHub Linguist
+# Priorizar Java como lenguaje principal
+# ==============================================
+
+# Forzar Java como lenguaje principal
 *.java linguist-language=Java
 
-# Forzar codificación de texto
-*.java text eol=lf
+# Mantener HTML detectable normalmente
 *.html text eol=lf
+
+# Mantener CSS detectable normalmente
 *.css text eol=lf
+
+# Mantener JS detectable normalmente
 *.js text eol=lf
 
-# Configuración de imágenes (si usas imágenes estáticas)
+# Archivos de configuración y templates
+*.xml text eol=lf
+*.properties text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Archivos de build y scripts
+*.gradle text eol=lf
+*.sh text eol=lf
+
+# Imágenes y binarios
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.gif binary
 *.ico binary
+*.svg text eol=lf
+
+# ==============================================
+# Forzar finales de línea LF (Unix) en general
+# ==============================================
+* text=auto eol=lf
