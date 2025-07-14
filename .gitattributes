@@ -1,0 +1,20 @@
+# Forzar detección de Java como lenguaje principal
+*.java linguist-language=Java
+
+# Opcional: excluir vistas Thymeleaf y otros de la estadística principal
+*.html linguist-detectable=false
+*.css linguist-detectable=false
+*.js linguist-detectable=false
+
+# Forzar codificación de texto
+*.java text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+
+# Configuración de imágenes (si usas imágenes estáticas)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
