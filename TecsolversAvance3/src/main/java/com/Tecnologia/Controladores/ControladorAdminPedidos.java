@@ -12,7 +12,16 @@ import com.Tecnologia.Repositorio.ClientesRepositorio;
 import com.Tecnologia.Repositorio.PedidoRepositorio;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,27 +89,74 @@ public class ControladorAdminPedidos {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Pedidos");
 
+        // Crear estilos
+        CellStyle headerStyle = workbook.createCellStyle();
+        Font headerFont = workbook.createFont();
+        headerFont.setBold(true);
+        headerStyle.setFont(headerFont);
+        headerStyle.setAlignment(HorizontalAlignment.CENTER);
+        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        headerStyle.setBorderBottom(BorderStyle.THIN);
+        headerStyle.setBorderTop(BorderStyle.THIN);
+        headerStyle.setBorderLeft(BorderStyle.THIN);
+        headerStyle.setBorderRight(BorderStyle.THIN);
+
+        CellStyle dataStyle = workbook.createCellStyle();
+        dataStyle.setBorderBottom(BorderStyle.THIN);
+        dataStyle.setBorderTop(BorderStyle.THIN);
+        dataStyle.setBorderLeft(BorderStyle.THIN);
+        dataStyle.setBorderRight(BorderStyle.THIN);
+
+        CellStyle dateStyle = workbook.createCellStyle();
+        dateStyle.cloneStyleFrom(dataStyle);
+        CreationHelper createHelper = workbook.getCreationHelper();
+        dateStyle.setDataFormat(createHelper.createDataFormat().getFormat("dd/MM/yyyy"));
+
+        CellStyle currencyStyle = workbook.createCellStyle();
+        currencyStyle.cloneStyleFrom(dataStyle);
+        currencyStyle.setDataFormat(createHelper.createDataFormat().getFormat("#,##0.00"));
+
         // Cabecera
         Row headerRow = sheet.createRow(0);
-        headerRow.createCell(0).setCellValue("ID");
-        headerRow.createCell(1).setCellValue("Cliente");
-        headerRow.createCell(2).setCellValue("Fecha");
-        headerRow.createCell(3).setCellValue("Estado");
-        headerRow.createCell(4).setCellValue("Total");
+        String[] headers = {"ID", "Cliente", "Fecha", "Estado", "Total"};
+
+        for (int i = 0; i < headers.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(headers[i]);
+            cell.setCellStyle(headerStyle);
+        }
 
         // Datos
         int rowNum = 1;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         for (Pedido pedido : pedidos) {
             Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(pedido.getIdPedido().toString());
-            row.createCell(1).setCellValue(pedido.getCliente().getNombreCli()); // o getNombreCompleto()
-            row.createCell(2).setCellValue(pedido.getFecha().toString());
-            row.createCell(3).setCellValue(pedido.getEstado());
-            row.createCell(4).setCellValue(pedido.getTotal().doubleValue());
+
+            Cell cell0 = row.createCell(0);
+            cell0.setCellValue(pedido.getIdPedido());
+            cell0.setCellStyle(dataStyle);
+
+            Cell cell1 = row.createCell(1);
+            cell1.setCellValue(pedido.getCliente().getNombreCli());
+            cell1.setCellStyle(dataStyle);
+
+            Cell cell2 = row.createCell(2);
+            cell2.setCellValue(pedido.getFecha());
+            cell2.setCellStyle(dateStyle);
+
+            Cell cell3 = row.createCell(3);
+            cell3.setCellValue(pedido.getEstado());
+            cell3.setCellStyle(dataStyle);
+
+            Cell cell4 = row.createCell(4);
+            cell4.setCellValue(pedido.getTotal().doubleValue());
+            cell4.setCellStyle(currencyStyle);
         }
 
         // Ajustar columnas
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < headers.length; i++) {
             sheet.autoSizeColumn(i);
         }
 
