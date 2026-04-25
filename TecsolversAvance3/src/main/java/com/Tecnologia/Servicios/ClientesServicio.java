@@ -15,7 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClientesServicio {
-
+    
+    @Autowired
+    private authService authService;
+    
     @Autowired
     private ClientesRepositorio clienteRepository;
 

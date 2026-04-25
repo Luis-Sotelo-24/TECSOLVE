@@ -6,6 +6,7 @@ import com.Tecnologia.Repositorio.ClientesRepositorio;
 import com.Tecnologia.Repositorio.RolRepositorio;
 import com.Tecnologia.seguridad.authService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,12 @@ public class ControladorRegistro {
 
     private final ClientesRepositorio clientesRepo;
     private final RolRepositorio rolRepo;
+    private final authService authService;
 
-    public ControladorRegistro(ClientesRepositorio clientesRepo, RolRepositorio rolRepo) {
+    public ControladorRegistro(authService authService,ClientesRepositorio clientesRepo, RolRepositorio rolRepo) {
         this.clientesRepo = clientesRepo;
         this.rolRepo = rolRepo;
+        this.authService = authService;
     }
 
     @GetMapping("/registro")
